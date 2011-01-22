@@ -60,13 +60,13 @@
 + (void)unlockKeychain;
 
 //! @abstract The keychain item's username.
-@property (readwrite, copy) NSString *username;
+@property (nonatomic, readwrite, copy) NSString *username;
 
 //! @abstract The keychain item's password.
-@property (readwrite, copy) NSString *password;
+@property (nonatomic, readwrite, copy) NSString *password;
 
 //! @abstract The keychain item's label.
-@property (readwrite, copy) NSString *label;
+@property (nonatomic, readwrite, copy) NSString *label;
 
 /*!
 	@abstract Removes the receiver from the keychain.
@@ -89,7 +89,7 @@
 }
 
 //! @abstract The keychain item's service name.
-@property (readwrite, copy) NSString *serviceName;
+@property (nonatomic, readwrite, copy) NSString *serviceName;
 
 /*!
 	@abstract Returns, if possible, a generic keychain item that corresponds to the given service.
@@ -161,15 +161,15 @@
 													protocol:(SecProtocolType)protocol;
 
 //! @abstract The keychain item's server.
-@property (readwrite, copy) NSString *server;
+@property (nonatomic, readwrite, copy) NSString *server;
 
 //! @abstract The keychain item's path.
-@property (readwrite, copy) NSString *path;
+@property (nonatomic, readwrite, copy) NSString *path;
 
 //! @abstract The keychain item's port.
-@property (readwrite, assign) NSInteger port;
+@property (nonatomic, readwrite, assign) NSInteger port;
 
 //! @abstract The keychain item's protocol.
-@property (readwrite, assign) SecProtocolType protocol;
+@property (nonatomic, readwrite, assign) SecProtocolType protocol;
 
 @end
