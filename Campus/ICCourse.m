@@ -10,12 +10,13 @@
 
 @implementation ICCourse
 @dynamic identifier, name, instructor, url;
-+ (ICCourse *)courseWithIdentifier:(NSString *)theID {
-	return [[[self alloc] initWithIdentifier:theID] autorelease];
++ (ICCourse *)courseWithIdentifier:(NSString *)theID name:(NSString *)theName {
+	return [[[self alloc] initWithIdentifier:theID name:theName] autorelease];
 }
-- (id)initWithIdentifier:(NSString *)theID {
+- (id)initWithIdentifier:(NSString *)theID name:(NSString *)theName {
 	if ((self = [super init])) {
 		self.identifier = theID;
+		self.name = theName;
 	}
 	return self;
 }

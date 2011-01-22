@@ -72,7 +72,7 @@
 					NSDate *end = [NSDate dateWithNaturalLanguageString:[components objectAtIndex:2]];
 					ICTerm *term = [ICTerm termWithName:[components objectAtIndex:0] start:start end:end];
 					[terms addObject:term];
-					//NSLog(@"Term: %@", term);
+					NSLog(@"Term: %@", term);
 				}
 				
 				// Populate each term with courses
@@ -88,7 +88,52 @@
 						if (![[cell objectForKey:@"nodeContent"] isEqualToString:@"EMPTY"]) {
 							
 							// Parse out the actual content of the class. Remember, some cells contain more than one course!
-							NSLog(@"Cell:\n%@", cell);
+							//NSLog(@"Cell:\n%@\n", cell);
+							for (NSUInteger nodeIndex = 0; nodeIndex < [[cell objectForKey:@"nodeChildArray"] count]; nodeIndex++) {
+								NSDictionary *node = [[cell objectForKey:@"nodeChildArray"] objectAtIndex:nodeIndex];
+								if ([[node objectForKey:@"nodeName"] isEqualToString:@"font"]) { // Each course within a cell is in its own font tag, so this is how we're seperating individual courses within each cell.
+									if ([[node objectForKey:@"nodeAttributeArray"] containsObject:[NSDictionary dictionaryWithObjectsAndKeys:@"color", @"attributeName", @"black", @"nodeContent", nil]]) { // Make sure it's a black font tag, because only those contain courses.
+										
+										// These have to be nilled out so that classes without specified instructors won't be listed as having the instructor of the last course that was parsed.
+										NSString *courseTitle = nil;
+										NSString *courseTeacher = nil;
+										NSString *teacherEmail = nil;
+										NSURL *courseURL = nil;
+										for (NSUInteger itemIndex = 0; itemIndex < [[node objectForKey:@"nodeChildArray"] count]; itemIndex++) { // Gettin' deeper. Man, look at that gutter.
+											NSDictionary *item = [[node objectForKey:@"nodeChildArray"] objectAtIndex:itemIndex];
+											NSString *itemName = [item objectForKey:@"nodeName"];
+											if ([itemName isEqualToString:@"b"]) { // A plain 'b' tag is the title of a course that doesn't have a gradebook.
+												courseTitle = [item objectForKey:@"nodeContent"];
+											}
+											else if ([itemName isEqualToString:@"a"]) {
+												if ([item objectForKey:@"nodeChildArray"]) { // An 'a' tag with a child is the gradebook link (because the link text is inside of a 'b' tag).
+													courseTitle = [[[item objectForKey:@"nodeChildArray"] objectAtIndex:0] objectForKey:@"nodeContent"];
+													courseURL = [NSURL URLWithString:[[[item objectForKey:@"nodeAttributeArray"] objectAtIndex:0] objectForKey:@"nodeContent"]];
+												}
+												else { // ...And one without children is the teacher's name and mailto link.
+													courseTeacher = [item objectForKey:@"nodeContent"];
+													teacherEmail = [[[[[item objectForKey:@"nodeAttributeArray"] objectAtIndex:0] objectForKey:@"nodeContent"] componentsSeparatedByString:@"mailto:"] objectAtIndex:1];
+												}
+
+											}
+										}
+										
+										// Parse course title into name and id
+										NSString *courseIdentifier = [[courseTitle componentsSeparatedByString:@" "] objectAtIndex:0];
+										NSString *courseName = [[courseTitle componentsSeparatedByString:[courseIdentifier stringByAppendingString:@" "]] objectAtIndex:1];
+										
+										// Set up ICCourse object. (Note: teacherEmail is not currently being used, but it's there!)
+										ICCourse *course = [ICCourse courseWithIdentifier:courseIdentifier name:courseName];
+										[course setInstructor:courseTeacher];
+										// Something is up with setting the course URL. It's there, but we're getting an EXE_BAD_ACCESS when we try to set it. Todo: make this work.
+										//[course setUrl:courseURL];
+										NSLog(@"Course: %@", course);
+										
+										// Next step: sort courses into appropriate terms. Perhaps the easiest way of doing this would just be to only iterate through courses within each term while parsing instead of iterating through all of them at once.
+									
+									}
+								}
+							}
 							
 						}
 						

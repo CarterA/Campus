@@ -13,6 +13,6 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *instructor;
 @property (nonatomic, retain) NSURL *url;
-+ (ICCourse *)courseWithIdentifier:(NSString *)theID;
-- (id)initWithIdentifier:(NSString *)theID;
++ (ICCourse *)courseWithIdentifier:(NSString *)theID name:(NSString *)theName;
+- (id)initWithIdentifier:(NSString *)theID name:(NSString *)theName;
 @end
