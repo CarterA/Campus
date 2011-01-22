@@ -72,7 +72,7 @@
 					NSDate *end = [NSDate dateWithNaturalLanguageString:[components objectAtIndex:2]];
 					ICTerm *term = [ICTerm termWithName:[components objectAtIndex:0] start:start end:end];
 					[terms addObject:term];
-					NSLog(@"Term: %@", term);
+					//NSLog(@"Term: %@", term);
 				}
 				
 				// Populate each term with courses
@@ -124,19 +124,16 @@
 										
 										// Set up ICCourse object. (Note: teacherEmail is not currently being used, but it's there!)
 										ICCourse *course = [ICCourse courseWithIdentifier:courseIdentifier name:courseName];
-										[course setInstructor:courseTeacher];
-										// Something is up with setting the course URL. It's there, but we're getting an EXE_BAD_ACCESS when we try to set it. Todo: make this work.
-										//[course setUrl:courseURL];
-										NSLog(@"Course: %@", course);
-										
-										// Next step: sort courses into appropriate terms. Perhaps the easiest way of doing this would just be to only iterate through courses within each term while parsing instead of iterating through all of them at once.
+										course.instructor = courseTeacher;
+										course.url = courseURL;
+										[[terms objectAtIndex:columnIndex-1] addCourse:course];
 									
 									}
 								}
 							}
 							
 						}
-						
+						NSLog(@"Term: %@", [terms objectAtIndex:columnIndex-1]);
 					}
 				}
 				//NSLog(@"Row query results: %@", rowQueryResults);

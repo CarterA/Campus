@@ -18,6 +18,7 @@
 		self.name = theName;
 		self.start = startDate;
 		self.end = endDate;
+		self.courses = [NSMutableArray array];
 	}
 	return self;
 }
