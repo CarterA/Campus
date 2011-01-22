@@ -26,6 +26,8 @@
 		4AA9B29A12EAB0AC00CCB828 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA9B29912EAB0AC00CCB828 /* Security.framework */; };
 		4AA9B2E212EAB30A00CCB828 /* Username.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4AA9B2E112EAB30A00CCB828 /* Username.txt */; };
 		4AC5D56812E772560012CA4B /* IKConnectionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC5D56712E772560012CA4B /* IKConnectionDelegate.m */; };
+		5EBDA1A112EB884A00833AC3 /* ICConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBDA1A012EB884A00833AC3 /* ICConnection.m */; };
+		5EBDA1A612EB8EDD00833AC3 /* ICResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBDA1A512EB8EDD00833AC3 /* ICResponse.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,10 @@
 		4AA9B2E112EAB30A00CCB828 /* Username.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Username.txt; sourceTree = "<group>"; };
 		4AC5D56612E772560012CA4B /* IKConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKConnectionDelegate.h; sourceTree = "<group>"; };
 		4AC5D56712E772560012CA4B /* IKConnectionDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKConnectionDelegate.m; sourceTree = "<group>"; };
+		5EBDA19F12EB884A00833AC3 /* ICConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICConnection.h; sourceTree = "<group>"; };
+		5EBDA1A012EB884A00833AC3 /* ICConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICConnection.m; sourceTree = "<group>"; };
+		5EBDA1A412EB8EDD00833AC3 /* ICResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICResponse.h; sourceTree = "<group>"; };
+		5EBDA1A512EB8EDD00833AC3 /* ICResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICResponse.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +132,10 @@
 				4A199C9D12E644F90093D0F1 /* CampusAppDelegate.m */,
 				4A199CA712E64C6F0093D0F1 /* CampusLogin.h */,
 				4A199CAA12E64C900093D0F1 /* CampusLogin.m */,
+				5EBDA19F12EB884A00833AC3 /* ICConnection.h */,
+				5EBDA1A012EB884A00833AC3 /* ICConnection.m */,
+				5EBDA1A412EB8EDD00833AC3 /* ICResponse.h */,
+				5EBDA1A512EB8EDD00833AC3 /* ICResponse.m */,
 				4AA9B04012E815E200CCB828 /* ICTerm.h */,
 				4AA9B04112E815E200CCB828 /* ICTerm.m */,
 				4AA9B03612E814E500CCB828 /* ICCourse.h */,
@@ -245,6 +255,8 @@
 				4AA9B0F112E9776D00CCB828 /* RMModelObject.mm in Sources */,
 				4AA9B11012EA4AC600CCB828 /* CZProgressIndicator.m in Sources */,
 				4AA9B28712EAB02000CCB828 /* EMKeychainItem.m in Sources */,
+				5EBDA1A112EB884A00833AC3 /* ICConnection.m in Sources */,
+				5EBDA1A612EB8EDD00833AC3 /* ICResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
