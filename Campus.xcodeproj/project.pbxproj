@@ -1,0 +1,360 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4A199C8B12E644F90093D0F1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A199C8A12E644F90093D0F1 /* Cocoa.framework */; };
+		4A199C9512E644F90093D0F1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4A199C9312E644F90093D0F1 /* InfoPlist.strings */; };
+		4A199C9812E644F90093D0F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A199C9712E644F90093D0F1 /* main.m */; };
+		4A199C9B12E644F90093D0F1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4A199C9912E644F90093D0F1 /* Credits.rtf */; };
+		4A199C9E12E644F90093D0F1 /* CampusAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A199C9D12E644F90093D0F1 /* CampusAppDelegate.m */; };
+		4A199CAB12E64C900093D0F1 /* CampusLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A199CAA12E64C900093D0F1 /* CampusLogin.m */; };
+		4A199CB912E6B0370093D0F1 /* CZURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A199CB812E6B0370093D0F1 /* CZURLConnection.m */; };
+		4A90E20E12E7DFDF00F3E619 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A90E20D12E7DFDF00F3E619 /* libxml2.dylib */; };
+		4A90E21212E7E01900F3E619 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A90E21112E7E01900F3E619 /* XPathQuery.m */; };
+		4AA9B03812E814E500CCB828 /* ICCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA9B03712E814E500CCB828 /* ICCourse.m */; };
+		4AA9B04212E815E200CCB828 /* ICTerm.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA9B04112E815E200CCB828 /* ICTerm.m */; };
+		4AA9B0F112E9776D00CCB828 /* RMModelObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4AA9B0F012E9776D00CCB828 /* RMModelObject.mm */; };
+		4AA9B11012EA4AC600CCB828 /* CZProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA9B10F12EA4AC600CCB828 /* CZProgressIndicator.m */; };
+		4AA9B16C12EA5ABD00CCB828 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AA9B16B12EA5ABD00CCB828 /* MainMenu.xib */; };
+		4AA9B28712EAB02000CCB828 /* EMKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA9B28612EAB02000CCB828 /* EMKeychainItem.m */; };
+		4AA9B29812EAB0AC00CCB828 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA9B29712EAB0AC00CCB828 /* Carbon.framework */; };
+		4AA9B29A12EAB0AC00CCB828 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA9B29912EAB0AC00CCB828 /* Security.framework */; };
+		4AA9B2E212EAB30A00CCB828 /* Username.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4AA9B2E112EAB30A00CCB828 /* Username.txt */; };
+		4AC5D56812E772560012CA4B /* IKConnectionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC5D56712E772560012CA4B /* IKConnectionDelegate.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4A199C8612E644F90093D0F1 /* Campus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Campus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A199C8A12E644F90093D0F1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		4A199C8D12E644F90093D0F1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		4A199C8E12E644F90093D0F1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		4A199C8F12E644F90093D0F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		4A199C9212E644F90093D0F1 /* Campus-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Campus-Info.plist"; sourceTree = "<group>"; };
+		4A199C9412E644F90093D0F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4A199C9612E644F90093D0F1 /* Campus-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Campus-Prefix.pch"; sourceTree = "<group>"; };
+		4A199C9712E644F90093D0F1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4A199C9A12E644F90093D0F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		4A199C9C12E644F90093D0F1 /* CampusAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CampusAppDelegate.h; sourceTree = "<group>"; };
+		4A199C9D12E644F90093D0F1 /* CampusAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CampusAppDelegate.m; sourceTree = "<group>"; };
+		4A199CA712E64C6F0093D0F1 /* CampusLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CampusLogin.h; sourceTree = "<group>"; };
+		4A199CAA12E64C900093D0F1 /* CampusLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampusLogin.m; sourceTree = "<group>"; };
+		4A199CB512E6B01F0093D0F1 /* CZURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CZURLConnection.h; sourceTree = "<group>"; };
+		4A199CB812E6B0370093D0F1 /* CZURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CZURLConnection.m; sourceTree = "<group>"; };
+		4A90E20D12E7DFDF00F3E619 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = ../../../../../../../usr/lib/libxml2.dylib; sourceTree = "<group>"; };
+		4A90E21012E7E01900F3E619 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		4A90E21112E7E01900F3E619 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		4AA9B03612E814E500CCB828 /* ICCourse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICCourse.h; sourceTree = "<group>"; };
+		4AA9B03712E814E500CCB828 /* ICCourse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICCourse.m; sourceTree = "<group>"; };
+		4AA9B04012E815E200CCB828 /* ICTerm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICTerm.h; sourceTree = "<group>"; };
+		4AA9B04112E815E200CCB828 /* ICTerm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICTerm.m; sourceTree = "<group>"; };
+		4AA9B0EF12E9776D00CCB828 /* RMModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMModelObject.h; sourceTree = "<group>"; };
+		4AA9B0F012E9776D00CCB828 /* RMModelObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RMModelObject.mm; sourceTree = "<group>"; };
+		4AA9B10E12EA4AC600CCB828 /* CZProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CZProgressIndicator.h; sourceTree = "<group>"; };
+		4AA9B10F12EA4AC600CCB828 /* CZProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CZProgressIndicator.m; sourceTree = "<group>"; };
+		4AA9B16B12EA5ABD00CCB828 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		4AA9B28512EAB02000CCB828 /* EMKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKeychainItem.h; sourceTree = "<group>"; };
+		4AA9B28612EAB02000CCB828 /* EMKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKeychainItem.m; sourceTree = "<group>"; };
+		4AA9B29712EAB0AC00CCB828 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		4AA9B29912EAB0AC00CCB828 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		4AA9B2E112EAB30A00CCB828 /* Username.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Username.txt; sourceTree = "<group>"; };
+		4AC5D56612E772560012CA4B /* IKConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKConnectionDelegate.h; sourceTree = "<group>"; };
+		4AC5D56712E772560012CA4B /* IKConnectionDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKConnectionDelegate.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4A199C8312E644F80093D0F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A199C8B12E644F90093D0F1 /* Cocoa.framework in Frameworks */,
+				4A90E20E12E7DFDF00F3E619 /* libxml2.dylib in Frameworks */,
+				4AA9B29812EAB0AC00CCB828 /* Carbon.framework in Frameworks */,
+				4AA9B29A12EAB0AC00CCB828 /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4A199C7B12E644F80093D0F1 = {
+			isa = PBXGroup;
+			children = (
+				4A199C9012E644F90093D0F1 /* Campus */,
+				4A199C8912E644F90093D0F1 /* Frameworks */,
+				4A199C8712E644F90093D0F1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4A199C8712E644F90093D0F1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4A199C8612E644F90093D0F1 /* Campus.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4A199C8912E644F90093D0F1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4A199C8A12E644F90093D0F1 /* Cocoa.framework */,
+				4A199C8C12E644F90093D0F1 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4A199C8C12E644F90093D0F1 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4A199C8D12E644F90093D0F1 /* AppKit.framework */,
+				4A199C8E12E644F90093D0F1 /* CoreData.framework */,
+				4A199C8F12E644F90093D0F1 /* Foundation.framework */,
+				4AA9B29712EAB0AC00CCB828 /* Carbon.framework */,
+				4AA9B29912EAB0AC00CCB828 /* Security.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		4A199C9012E644F90093D0F1 /* Campus */ = {
+			isa = PBXGroup;
+			children = (
+				4A199C9C12E644F90093D0F1 /* CampusAppDelegate.h */,
+				4A199C9D12E644F90093D0F1 /* CampusAppDelegate.m */,
+				4A199CA712E64C6F0093D0F1 /* CampusLogin.h */,
+				4A199CAA12E64C900093D0F1 /* CampusLogin.m */,
+				4AA9B04012E815E200CCB828 /* ICTerm.h */,
+				4AA9B04112E815E200CCB828 /* ICTerm.m */,
+				4AA9B03612E814E500CCB828 /* ICCourse.h */,
+				4AA9B03712E814E500CCB828 /* ICCourse.m */,
+				4A199CB512E6B01F0093D0F1 /* CZURLConnection.h */,
+				4A199CB812E6B0370093D0F1 /* CZURLConnection.m */,
+				4AA9B16B12EA5ABD00CCB828 /* MainMenu.xib */,
+				4A199C9112E644F90093D0F1 /* Supporting Files */,
+			);
+			path = Campus;
+			sourceTree = "<group>";
+		};
+		4A199C9112E644F90093D0F1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4A90E20D12E7DFDF00F3E619 /* libxml2.dylib */,
+				4A90E20F12E7E01900F3E619 /* XPathQuery */,
+				4AA9B10E12EA4AC600CCB828 /* CZProgressIndicator.h */,
+				4AA9B10F12EA4AC600CCB828 /* CZProgressIndicator.m */,
+				4AC5D56612E772560012CA4B /* IKConnectionDelegate.h */,
+				4AC5D56712E772560012CA4B /* IKConnectionDelegate.m */,
+				4AA9B28512EAB02000CCB828 /* EMKeychainItem.h */,
+				4AA9B28612EAB02000CCB828 /* EMKeychainItem.m */,
+				4AA9B0EF12E9776D00CCB828 /* RMModelObject.h */,
+				4AA9B0F012E9776D00CCB828 /* RMModelObject.mm */,
+				4A199C9212E644F90093D0F1 /* Campus-Info.plist */,
+				4A199C9312E644F90093D0F1 /* InfoPlist.strings */,
+				4A199C9612E644F90093D0F1 /* Campus-Prefix.pch */,
+				4A199C9712E644F90093D0F1 /* main.m */,
+				4A199C9912E644F90093D0F1 /* Credits.rtf */,
+				4AA9B2E112EAB30A00CCB828 /* Username.txt */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4A90E20F12E7E01900F3E619 /* XPathQuery */ = {
+			isa = PBXGroup;
+			children = (
+				4A90E21012E7E01900F3E619 /* XPathQuery.h */,
+				4A90E21112E7E01900F3E619 /* XPathQuery.m */,
+			);
+			path = XPathQuery;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4A199C8512E644F80093D0F1 /* Campus */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4A199CA412E644F90093D0F1 /* Build configuration list for PBXNativeTarget "Campus" */;
+			buildPhases = (
+				4A199C8212E644F80093D0F1 /* Sources */,
+				4A199C8312E644F80093D0F1 /* Frameworks */,
+				4A199C8412E644F80093D0F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Campus;
+			productName = Campus;
+			productReference = 4A199C8612E644F90093D0F1 /* Campus.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4A199C7D12E644F80093D0F1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Opt-6 Products, LLC";
+			};
+			buildConfigurationList = 4A199C8012E644F80093D0F1 /* Build configuration list for PBXProject "Campus" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 4A199C7B12E644F80093D0F1;
+			productRefGroup = 4A199C8712E644F90093D0F1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4A199C8512E644F80093D0F1 /* Campus */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4A199C8412E644F80093D0F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A199C9512E644F90093D0F1 /* InfoPlist.strings in Resources */,
+				4A199C9B12E644F90093D0F1 /* Credits.rtf in Resources */,
+				4AA9B16C12EA5ABD00CCB828 /* MainMenu.xib in Resources */,
+				4AA9B2E212EAB30A00CCB828 /* Username.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4A199C8212E644F80093D0F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A199C9812E644F90093D0F1 /* main.m in Sources */,
+				4A199C9E12E644F90093D0F1 /* CampusAppDelegate.m in Sources */,
+				4A199CAB12E64C900093D0F1 /* CampusLogin.m in Sources */,
+				4A199CB912E6B0370093D0F1 /* CZURLConnection.m in Sources */,
+				4AC5D56812E772560012CA4B /* IKConnectionDelegate.m in Sources */,
+				4A90E21212E7E01900F3E619 /* XPathQuery.m in Sources */,
+				4AA9B03812E814E500CCB828 /* ICCourse.m in Sources */,
+				4AA9B04212E815E200CCB828 /* ICTerm.m in Sources */,
+				4AA9B0F112E9776D00CCB828 /* RMModelObject.mm in Sources */,
+				4AA9B11012EA4AC600CCB828 /* CZProgressIndicator.m in Sources */,
+				4AA9B28712EAB02000CCB828 /* EMKeychainItem.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4A199C9312E644F90093D0F1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4A199C9412E644F90093D0F1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4A199C9912E644F90093D0F1 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4A199C9A12E644F90093D0F1 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4A199CA212E644F90093D0F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		4A199CA312E644F90093D0F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		4A199CA512E644F90093D0F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Campus/Campus-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
+				INFOPLIST_FILE = "Campus/Campus-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		4A199CA612E644F90093D0F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Campus/Campus-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
+				INFOPLIST_FILE = "Campus/Campus-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4A199C8012E644F80093D0F1 /* Build configuration list for PBXProject "Campus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A199CA212E644F90093D0F1 /* Debug */,
+				4A199CA312E644F90093D0F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4A199CA412E644F90093D0F1 /* Build configuration list for PBXNativeTarget "Campus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A199CA512E644F90093D0F1 /* Debug */,
+				4A199CA612E644F90093D0F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4A199C7D12E644F80093D0F1 /* Project object */;
+}

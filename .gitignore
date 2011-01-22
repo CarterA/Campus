@@ -1,0 +1,15 @@
+# Xcode files
+Products/*
+build/*
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+xcuserdata
+
+# OS X files
+.DS_Store
+profile
+
+# Username
+Campus/Username.txt
