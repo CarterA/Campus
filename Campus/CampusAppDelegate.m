@@ -28,7 +28,14 @@
 	
 	// Scrape as much data as possible using an ICConnection object.
 	ICConnection *campusConnection = [[ICConnection alloc] init];
-	[campusConnection scrapeDataWithUsername:item.username password:item.password completionHandler:^(ICResponse *response) { NSLog(@"Response:\n%@\n", response); }];
+	[campusConnection scrapeDataWithUsername:item.username password:item.password completionHandler:^(ICResponse *response) {
+		for (ICTerm *term in response.terms) {
+			NSLog(@"Term:\n%@\n", term); 
+			for (ICCourse *course in term.courses) {
+				NSLog(@"Course:\n%@\nInstructor: %@\nEmail: %@\n", course, course.instructor.name, course.instructor.email);
+			}
+		}
+	}];
 	[campusConnection release];
 	
 }

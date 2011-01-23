@@ -108,7 +108,10 @@
 									
 									// Set up ICCourse object. (Note: teacherEmail is not currently being used, but it's there!)
 									ICCourse *course = [ICCourse courseWithIdentifier:courseIdentifier name:courseName];
-									course.instructor = courseTeacher;
+									ICInstructor instructor;
+									instructor.name = courseTeacher;
+									instructor.email = teacherEmail;
+									course.instructor = instructor;
 									course.url = courseURL;
 									[[terms objectAtIndex:columnIndex-1] addCourse:course];
 									
