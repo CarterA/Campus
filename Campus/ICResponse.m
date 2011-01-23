@@ -10,4 +10,7 @@
 
 @implementation ICResponse
 @dynamic student, terms;
+- (void)addTerm:(ICTerm *)term {
+	[self.terms addObject:term];
+}
 @end

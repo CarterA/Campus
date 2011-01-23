@@ -12,6 +12,6 @@
 
 @interface ICResponse : RMModelObject {}
 @property (nonatomic, retain) ICStudent *student;
-@property (nonatomic, retain) NSArray *terms;
-//- (void)addTerm:(ICTerm *)term;
+@property (nonatomic, retain) NSMutableArray *terms;
+- (void)addTerm:(ICTerm *)term;
 @end
