@@ -25,6 +25,7 @@
 		4AA9B29812EAB0AC00CCB828 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA9B29712EAB0AC00CCB828 /* Carbon.framework */; };
 		4AA9B29A12EAB0AC00CCB828 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA9B29912EAB0AC00CCB828 /* Security.framework */; };
 		4AA9B2E212EAB30A00CCB828 /* Username.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4AA9B2E112EAB30A00CCB828 /* Username.txt */; };
+		4AA9B39612EB770000CCB828 /* Pinstripes.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AA9B39512EB770000CCB828 /* Pinstripes.png */; };
 		4AC5D56812E772560012CA4B /* IKConnectionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC5D56712E772560012CA4B /* IKConnectionDelegate.m */; };
 		5EBDA1A112EB884A00833AC3 /* ICConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBDA1A012EB884A00833AC3 /* ICConnection.m */; };
 		5EBDA1A612EB8EDD00833AC3 /* ICResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBDA1A512EB8EDD00833AC3 /* ICResponse.m */; };
@@ -64,6 +65,7 @@
 		4AA9B29712EAB0AC00CCB828 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		4AA9B29912EAB0AC00CCB828 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		4AA9B2E112EAB30A00CCB828 /* Username.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Username.txt; sourceTree = "<group>"; };
+		4AA9B39512EB770000CCB828 /* Pinstripes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pinstripes.png; sourceTree = "<group>"; };
 		4AC5D56612E772560012CA4B /* IKConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKConnectionDelegate.h; sourceTree = "<group>"; };
 		4AC5D56712E772560012CA4B /* IKConnectionDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKConnectionDelegate.m; sourceTree = "<group>"; };
 		5EBDA19F12EB884A00833AC3 /* ICConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICConnection.h; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 		4A199C9112E644F90093D0F1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4AA9B39512EB770000CCB828 /* Pinstripes.png */,
 				4A90E20D12E7DFDF00F3E619 /* libxml2.dylib */,
 				4A90E20F12E7E01900F3E619 /* XPathQuery */,
 				4AA9B10E12EA4AC600CCB828 /* CZProgressIndicator.h */,
@@ -234,6 +237,7 @@
 				4A199C9B12E644F90093D0F1 /* Credits.rtf in Resources */,
 				4AA9B16C12EA5ABD00CCB828 /* MainMenu.xib in Resources */,
 				4AA9B2E212EAB30A00CCB828 /* Username.txt in Resources */,
+				4AA9B39612EB770000CCB828 /* Pinstripes.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

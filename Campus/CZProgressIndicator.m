@@ -50,8 +50,9 @@ typedef enum {
 			break;
 		}
 		case CZProgressIndicatorFillComponent: {
-			rect.origin.x = CZ_PROGRESS_INDICATOR_CAP_WIDTH;
-			rect.size.width = self.bounds.size.width - (2 * CZ_PROGRESS_INDICATOR_CAP_WIDTH);
+			//rect.origin.x = CZ_PROGRESS_INDICATOR_CAP_WIDTH;
+			//rect.size.width = self.bounds.size.width - (2 * CZ_PROGRESS_INDICATOR_CAP_WIDTH);
+			rect.size.width = self.bounds.size.width;
 			break;
 		}
 		default:
@@ -91,8 +92,11 @@ typedef enum {
 			break;
 		}
 		case CZProgressIndicatorFillComponent: {
-			CGContextSetFillColorWithColor(context, CGColorGetConstantColor(kCGColorWhite));
-			CGContextFillRect(context, rect);
+			NSGradient *backgroundGradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedRed:0.6 green:0.6 blue:0.65 alpha:1.000] endingColor:[NSColor colorWithCalibratedRed:0.48 green:0.48 blue:0.52 alpha:1.000]];
+			[backgroundGradient drawInRect:rect angle:270];
+			NSColor *pattern = [NSColor colorWithPatternImage:[NSImage imageNamed:@"Pinstripes"]];
+			[pattern setFill];
+			[NSBezierPath fillRect:rect];
 			break;
 		}
 		default:
