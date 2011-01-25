@@ -63,7 +63,15 @@ typedef enum {
 	[self incrementAnimation];
 	
 	self.pinstripeOffset = 0;
+}
+
+#pragma mark -
+#pragma mark Accessors
+- (void)start {
 	[self.pinstripeAnimation startAnimation];
+}
+- (void)stop {
+	[self.pinstripeAnimation stopAnimation];
 }
 
 #pragma mark -
@@ -103,7 +111,7 @@ typedef enum {
 - (void)drawRect:(NSRect)dirtyRect {
 	
 	CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort];
-	CGContextSetAlpha(context, 0.5);
+	CGContextSetAlpha(context, 0.2);
 	if (!self.pinstripes) self.pinstripes = [[NSImage imageNamed:@"Pinstripes"] CGImageForProposedRect:NULL context:[NSGraphicsContext currentContext] hints:nil];
 	CGContextClipToRect(context, CGRectMake(0.0, 0.0, self.frame.size.width, self.frame.size.height));
 	CGContextTranslateCTM(context, -self.pinstripeOffset, 0);

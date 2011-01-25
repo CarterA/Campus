@@ -22,4 +22,6 @@ static inline CZProgressRange CZProgressRangeMake(CGFloat min, CGFloat max) {
 @property (nonatomic, assign) CZProgressRange range;
 @property (nonatomic, assign) NSControlSize controlSize;
 @property (nonatomic, assign) BOOL indeterminate;
+- (void)start;
+- (void)stop;
 @end

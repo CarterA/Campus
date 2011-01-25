@@ -8,10 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface CampusAppDelegate : NSObject <NSApplicationDelegate> {
-	NSWindow *window;
-}
+@class CZProgressIndicator;
 
+@interface CampusAppDelegate : NSObject <NSApplicationDelegate> {}
 @property (assign) IBOutlet NSWindow *window;
-
+@property (assign) IBOutlet CZProgressIndicator *progressIndicator;
+@property (assign) IBOutlet NSTextField *progressLabel;
 @end

@@ -10,15 +10,13 @@
 #import "ICConnection.h"
 #import "ICTerm.h"
 #import "ICCourse.h"
-#import "CZURLConnection.h"
 #import "EMKeychainItem.h"
-
-@interface CampusAppDelegate()
-@end
+#import "CZProgressIndicator.h"
 
 @implementation CampusAppDelegate
 
 @synthesize window;
+@synthesize progressIndicator, progressLabel;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	
@@ -28,13 +26,16 @@
 	
 	// Scrape as much data as possible using an ICConnection object.
 	ICConnection *campusConnection = [[ICConnection alloc] init];
+	[self.progressIndicator start];
 	[campusConnection scrapeDataWithUsername:item.username password:item.password completionHandler:^(ICResponse *response) {
-		for (ICTerm *term in response.terms) {
+		[self.progressLabel setStringValue:@"Loaded."];
+		[self.progressIndicator stop];
+		/*for (ICTerm *term in response.terms) {
 			NSLog(@"Term:\n%@\n", term); 
 			for (ICCourse *course in term.courses) {
 				NSLog(@"Course:\n%@\nInstructor: %@\nEmail: %@\n", course, course.instructor.name, course.instructor.email);
 			}
-		}
+		}*/
 	}];
 	[campusConnection release];
 	
