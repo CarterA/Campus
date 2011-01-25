@@ -14,6 +14,7 @@
 		4A199C9E12E644F90093D0F1 /* CampusAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A199C9D12E644F90093D0F1 /* CampusAppDelegate.m */; };
 		4A199CAB12E64C900093D0F1 /* CampusLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A199CAA12E64C900093D0F1 /* CampusLogin.m */; };
 		4A199CB912E6B0370093D0F1 /* CZURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A199CB812E6B0370093D0F1 /* CZURLConnection.m */; };
+		4A8E297A12EDF0300063D95A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8E297912EDF0300063D95A /* QuartzCore.framework */; };
 		4A90E20E12E7DFDF00F3E619 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A90E20D12E7DFDF00F3E619 /* libxml2.dylib */; };
 		4A90E21212E7E01900F3E619 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A90E21112E7E01900F3E619 /* XPathQuery.m */; };
 		4AA9B03812E814E500CCB828 /* ICCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA9B03712E814E500CCB828 /* ICCourse.m */; };
@@ -48,6 +49,7 @@
 		4A199CAA12E64C900093D0F1 /* CampusLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampusLogin.m; sourceTree = "<group>"; };
 		4A199CB512E6B01F0093D0F1 /* CZURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CZURLConnection.h; sourceTree = "<group>"; };
 		4A199CB812E6B0370093D0F1 /* CZURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CZURLConnection.m; sourceTree = "<group>"; };
+		4A8E297912EDF0300063D95A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4A90E20D12E7DFDF00F3E619 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = ../../../../../../../usr/lib/libxml2.dylib; sourceTree = "<group>"; };
 		4A90E21012E7E01900F3E619 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
 		4A90E21112E7E01900F3E619 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				4A90E20E12E7DFDF00F3E619 /* libxml2.dylib in Frameworks */,
 				4AA9B29812EAB0AC00CCB828 /* Carbon.framework in Frameworks */,
 				4AA9B29A12EAB0AC00CCB828 /* Security.framework in Frameworks */,
+				4A8E297A12EDF0300063D95A /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +126,7 @@
 				4A199C8F12E644F90093D0F1 /* Foundation.framework */,
 				4AA9B29712EAB0AC00CCB828 /* Carbon.framework */,
 				4AA9B29912EAB0AC00CCB828 /* Security.framework */,
+				4A8E297912EDF0300063D95A /* QuartzCore.framework */,
 			);
 			name = "Other Frameworks";
 			sourceTree = "<group>";
@@ -290,6 +294,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Opt-6 Products";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
@@ -306,6 +311,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Opt-6 Products";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
