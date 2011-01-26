@@ -12,6 +12,8 @@
 
 @interface CampusAppDelegate : NSObject <NSApplicationDelegate> {}
 @property (assign) IBOutlet NSWindow *window;
+@property (assign) IBOutlet NSView *termListParentView;
 @property (assign) IBOutlet CZProgressIndicator *progressIndicator;
 @property (assign) IBOutlet NSTextField *progressLabel;
+@property (nonatomic, retain) IBOutlet NSMutableArray *terms;
 @end
