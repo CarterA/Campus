@@ -93,7 +93,7 @@
 										else if ([itemName isEqualToString:@"a"]) {
 											if ([item objectForKey:@"nodeChildArray"]) { // An 'a' tag with a child is the gradebook link (because the link text is inside of a 'b' tag).
 												courseTitle = [[[item objectForKey:@"nodeChildArray"] objectAtIndex:0] objectForKey:@"nodeContent"];
-												courseURL = [NSURL URLWithString:[[[item objectForKey:@"nodeAttributeArray"] objectAtIndex:0] objectForKey:@"nodeContent"]];
+												courseURL = [NSURL URLWithString:[@"https://campus.dpsk12.org/campus/" stringByAppendingString:[[[item objectForKey:@"nodeAttributeArray"] objectAtIndex:0] objectForKey:@"nodeContent"]]];
 											}
 											else { // ...And one without children is the teacher's name and mailto link.
 												courseTeacher = [item objectForKey:@"nodeContent"];
@@ -113,6 +113,43 @@
 									instructor.email = teacherEmail;
 									course.instructor = instructor;
 									course.url = courseURL;
+									
+									//if ([courseName isEqualToString:@"American Lit & Comp Honors S1"]) { // For testing only. My brain can only handle one assload of assignment data at once.
+									// Scrape and add grade data to the course, if it contains a gradebook.
+									if (course.url) {
+										NSURLRequest *gradebookRequest = [NSURLRequest requestWithURL:course.url];
+										IKConnectionDelegate *gradebookRequestDelegate = [IKConnectionDelegate connectionDelegateWithDownloadProgress:nil uploadProgress:nil completion:^(NSData *gradebookResponseData, NSURLResponse *response, NSError *error) {
+											
+											NSString *tableQuery = @"/html/body/table/tr[3]/td[2]/table/tr[3]/td/table";
+											NSArray *tableQueryResults = PerformHTMLXPathQuery(gradebookResponseData, tableQuery);
+											for (NSUInteger tableIndex = 1; tableIndex < ([tableQueryResults count] - 1); tableIndex++) { // Starts at 1 and ends before the last table to skip grade summary table and grading scale table.
+												NSDictionary *table = [tableQueryResults objectAtIndex:tableIndex];
+												// Yeah... it's obnoxious. Don't mess with it till' we're done parsing though, because we need a log more obnoxious than the assignment data itself to be able to quickly distinguish between the tables.
+												NSLog(@"\n\n\n\n\n****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************TABLE, BITCH****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************\n\n\n\n\n%@", table);
+												
+												// Todo...
+												// 1) Check to see if table has grades in it at all.
+												// 2) If it does, look for the table's first row of the class 'detailFormHeader', which will contain the entire table's name. (The other detailFormHeader is at the bottom and contains the point & grade totals.)
+												// 3) Save this name somewhere in the data structure, not sure yet. Just make sure that the data for classes whose grades are split into 9 week blocks is recognized and respected in the structure.
+												// 4) Next, if the table has grades, parse the grades. This will involve...
+												//		- Breaking the table down into its assignment categories. (Use Xpath & for loop?)
+												//		- Use regex to see if assignment categories include percentages, thus finding out whether grades average or accumulate.
+												//		- Parse each individual assignment, and make an array of assignments for each assignment category.
+												//		- Add these arrays to a dictionary, and make the keys be the names of the assignment categories.
+												// 5) At this point, we should stop working inside of this for loop.
+												// 6) Add each assignment dictionary to its course by making it a property in ICCourse.
+												// 7) Parse grading scale table, and do some math with assignment grades to determine overall class grade. (Don't just read it from the grade summary – it's unreliable.)
+												// 8) Add class grade to each course object by making it an ICCourse property as well.
+												// 9) That's it! This block should be complete, and the fully populated course should be added to its term.
+												
+											}
+											
+										}];
+										[NSURLConnection connectionWithRequest:gradebookRequest delegate:gradebookRequestDelegate];
+									}
+									//}
+									
+									// Add the completed course to the term in which we are currently working.
 									[[terms objectAtIndex:columnIndex-1] addCourse:course];
 									
 								}
