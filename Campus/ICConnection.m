@@ -108,7 +108,7 @@
 									
 									// Set up ICCourse object. (Note: teacherEmail is not currently being used, but it's there!)
 									ICCourse *course = [ICCourse courseWithIdentifier:courseIdentifier name:courseName];
-									ICInstructor instructor;
+									ICInstructor *instructor = [ICInstructor instructor];
 									instructor.name = courseTeacher;
 									instructor.email = teacherEmail;
 									course.instructor = instructor;

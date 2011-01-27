@@ -8,15 +8,16 @@
 
 #import "RMModelObject.h"
 
-typedef struct {
-	NSString *name;
-	NSString *email;
-} ICInstructor;
+@interface ICInstructor : RMModelObject {}
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *email;
++ (ICInstructor *)instructor;
+@end
 
 @interface ICCourse : RMModelObject {}
 @property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, assign) ICInstructor instructor;
+@property (nonatomic, copy) ICInstructor *instructor;
 @property (nonatomic, retain) NSURL *url;
 + (ICCourse *)courseWithIdentifier:(NSString *)theID name:(NSString *)theName;
 - (id)initWithIdentifier:(NSString *)theID name:(NSString *)theName;

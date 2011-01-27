@@ -8,9 +8,13 @@
 
 #import "ICCourse.h"
 
+@implementation ICInstructor
+@dynamic name, email;
++ (ICInstructor *)instructor { return [[[ICInstructor alloc] init] autorelease]; }
+@end
+
 @implementation ICCourse
-@synthesize instructor; // I'd @dynamic this, but apparently RMModelObject sucks at making accessors for structs (*cough* opportunity for major improvement *cough*).
-@dynamic identifier, name, url;
+@dynamic identifier, instructor, name, url;
 + (ICCourse *)courseWithIdentifier:(NSString *)theID name:(NSString *)theName {
 	return [[[self alloc] initWithIdentifier:theID name:theName] autorelease];
 }
