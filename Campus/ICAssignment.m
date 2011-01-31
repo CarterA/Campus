@@ -9,5 +9,5 @@
 #import "ICAssignment.h"
 
 @implementation ICAssignment
-
+@dynamic name, dueDate, assignedDate, multiplier, possiblePoints, score, percentScore, comments;
 @end
