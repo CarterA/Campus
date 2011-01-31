@@ -30,6 +30,7 @@
 		4AC5D56812E772560012CA4B /* IKConnectionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC5D56712E772560012CA4B /* IKConnectionDelegate.m */; };
 		4AF3839E12F60FD500EE4175 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF3839D12F60FD500EE4175 /* BWToolkitFramework.framework */; };
 		4AF383DB12F6136700EE4175 /* BWToolkitFramework.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF3839D12F60FD500EE4175 /* BWToolkitFramework.framework */; };
+		5E34D94612F6783F00624E66 /* ICAssignment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E34D94512F6783F00624E66 /* ICAssignment.m */; };
 		5EBDA1A112EB884A00833AC3 /* ICConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBDA1A012EB884A00833AC3 /* ICConnection.m */; };
 		5EBDA1A612EB8EDD00833AC3 /* ICResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBDA1A512EB8EDD00833AC3 /* ICResponse.m */; };
 /* End PBXBuildFile section */
@@ -87,6 +88,8 @@
 		4AC5D56612E772560012CA4B /* IKConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKConnectionDelegate.h; sourceTree = "<group>"; };
 		4AC5D56712E772560012CA4B /* IKConnectionDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKConnectionDelegate.m; sourceTree = "<group>"; };
 		4AF3839D12F60FD500EE4175 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = Campus/BWToolkitFramework.framework; sourceTree = "<group>"; };
+		5E34D94412F6783F00624E66 /* ICAssignment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICAssignment.h; sourceTree = "<group>"; };
+		5E34D94512F6783F00624E66 /* ICAssignment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICAssignment.m; sourceTree = "<group>"; };
 		5EBDA19F12EB884A00833AC3 /* ICConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICConnection.h; sourceTree = "<group>"; };
 		5EBDA1A012EB884A00833AC3 /* ICConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICConnection.m; sourceTree = "<group>"; };
 		5EBDA1A412EB8EDD00833AC3 /* ICResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICResponse.h; sourceTree = "<group>"; };
@@ -165,6 +168,8 @@
 				4AA9B04112E815E200CCB828 /* ICTerm.m */,
 				4AA9B03612E814E500CCB828 /* ICCourse.h */,
 				4AA9B03712E814E500CCB828 /* ICCourse.m */,
+				5E34D94412F6783F00624E66 /* ICAssignment.h */,
+				5E34D94512F6783F00624E66 /* ICAssignment.m */,
 				4A199CB512E6B01F0093D0F1 /* CZURLConnection.h */,
 				4A199CB812E6B0370093D0F1 /* CZURLConnection.m */,
 				4AA9B16B12EA5ABD00CCB828 /* MainMenu.xib */,
@@ -285,6 +290,7 @@
 				4AA9B28712EAB02000CCB828 /* EMKeychainItem.m in Sources */,
 				5EBDA1A112EB884A00833AC3 /* ICConnection.m in Sources */,
 				5EBDA1A612EB8EDD00833AC3 /* ICResponse.m in Sources */,
+				5E34D94612F6783F00624E66 /* ICAssignment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
