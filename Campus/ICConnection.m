@@ -144,13 +144,16 @@
 												
 											}
 											
+											// Add the completed course to the term in which we are currently working.
+											[[terms objectAtIndex:columnIndex-1] addCourse:course];
+											
 										}];
 										[NSURLConnection connectionWithRequest:gradebookRequest delegate:gradebookRequestDelegate];
 									}
+									else { // If the course doesn't have a gradebook, just add it to the term without parsing assignments.
+										[[terms objectAtIndex:columnIndex-1] addCourse:course];
+									}
 									//}
-									
-									// Add the completed course to the term in which we are currently working.
-									[[terms objectAtIndex:columnIndex-1] addCourse:course];
 									
 								}
 							}
