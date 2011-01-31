@@ -25,4 +25,11 @@
 - (void)addCourse:(ICCourse *)course {
 	[self.courses addObject:course];
 }
+- (NSString *)range {
+	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+	formatter.dateStyle = NSDateFormatterShortStyle;
+	NSString *dateRange = [NSString stringWithFormat:@"%@ - %@", [formatter stringFromDate:self.start], [formatter stringFromDate:self.end]];
+	[formatter release];
+	return dateRange;
+}
 @end

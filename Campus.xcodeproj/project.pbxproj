@@ -28,9 +28,25 @@
 		4AA9B2E212EAB30A00CCB828 /* Username.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4AA9B2E112EAB30A00CCB828 /* Username.txt */; };
 		4AA9B39612EB770000CCB828 /* Pinstripes.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AA9B39512EB770000CCB828 /* Pinstripes.png */; };
 		4AC5D56812E772560012CA4B /* IKConnectionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC5D56712E772560012CA4B /* IKConnectionDelegate.m */; };
+		4AF3839E12F60FD500EE4175 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF3839D12F60FD500EE4175 /* BWToolkitFramework.framework */; };
+		4AF383DB12F6136700EE4175 /* BWToolkitFramework.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF3839D12F60FD500EE4175 /* BWToolkitFramework.framework */; };
 		5EBDA1A112EB884A00833AC3 /* ICConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBDA1A012EB884A00833AC3 /* ICConnection.m */; };
 		5EBDA1A612EB8EDD00833AC3 /* ICResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBDA1A512EB8EDD00833AC3 /* ICResponse.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4AF383E212F6136B00EE4175 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4AF383DB12F6136700EE4175 /* BWToolkitFramework.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4A199C8612E644F90093D0F1 /* Campus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Campus.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +86,7 @@
 		4AA9B39512EB770000CCB828 /* Pinstripes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pinstripes.png; sourceTree = "<group>"; };
 		4AC5D56612E772560012CA4B /* IKConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKConnectionDelegate.h; sourceTree = "<group>"; };
 		4AC5D56712E772560012CA4B /* IKConnectionDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKConnectionDelegate.m; sourceTree = "<group>"; };
+		4AF3839D12F60FD500EE4175 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = Campus/BWToolkitFramework.framework; sourceTree = "<group>"; };
 		5EBDA19F12EB884A00833AC3 /* ICConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICConnection.h; sourceTree = "<group>"; };
 		5EBDA1A012EB884A00833AC3 /* ICConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICConnection.m; sourceTree = "<group>"; };
 		5EBDA1A412EB8EDD00833AC3 /* ICResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICResponse.h; sourceTree = "<group>"; };
@@ -86,6 +103,7 @@
 				4AA9B29812EAB0AC00CCB828 /* Carbon.framework in Frameworks */,
 				4AA9B29A12EAB0AC00CCB828 /* Security.framework in Frameworks */,
 				4A8E297A12EDF0300063D95A /* QuartzCore.framework in Frameworks */,
+				4AF3839E12F60FD500EE4175 /* BWToolkitFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +139,7 @@
 		4A199C8C12E644F90093D0F1 /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4AF3839D12F60FD500EE4175 /* BWToolkitFramework.framework */,
 				4A199C8D12E644F90093D0F1 /* AppKit.framework */,
 				4A199C8E12E644F90093D0F1 /* CoreData.framework */,
 				4A199C8F12E644F90093D0F1 /* Foundation.framework */,
@@ -197,6 +216,7 @@
 				4A199C8212E644F80093D0F1 /* Sources */,
 				4A199C8312E644F80093D0F1 /* Frameworks */,
 				4A199C8412E644F80093D0F1 /* Resources */,
+				4AF383E212F6136B00EE4175 /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -326,6 +346,11 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Campus\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -344,6 +369,11 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Campus\"",
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Campus/Campus-Prefix.pch";

@@ -14,6 +14,7 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, retain) NSDate *start;
 @property (nonatomic, retain) NSDate *end;
+@property (readonly) NSString *range;
 @property (nonatomic, retain) NSMutableArray *courses;
 + (ICTerm *)termWithName:(NSString *)theName start:(NSDate *)startDate end:(NSDate *)endDate;
 - (id)initWithName:(NSString *)theName start:(NSDate *)startDate end:(NSDate *)endDate;

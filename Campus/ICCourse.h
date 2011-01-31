@@ -17,7 +17,7 @@
 @interface ICCourse : RMModelObject {}
 @property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) ICInstructor *instructor;
+@property (nonatomic, retain) ICInstructor *instructor;
 @property (nonatomic, retain) NSURL *url;
 + (ICCourse *)courseWithIdentifier:(NSString *)theID name:(NSString *)theName;
 - (id)initWithIdentifier:(NSString *)theID name:(NSString *)theName;

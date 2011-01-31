@@ -16,8 +16,8 @@
 
 @implementation CampusAppDelegate
 
-@synthesize window, termListParentView;
-@synthesize progressIndicator, progressLabel;
+@synthesize window, mainView, termListView;
+@synthesize progressIndicator;
 @synthesize terms;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
@@ -28,25 +28,15 @@
 	
 	// Scrape as much data as possible using an ICConnection object.
 	ICConnection *campusConnection = [[ICConnection alloc] init];
-	[self.progressIndicator start];
+	[self.progressIndicator setUsesThreadedAnimation:YES];
+	[self.progressIndicator startAnimation:self];
+	[self.termListView setMinItemSize:NSMakeSize(20, 60)];
 	[campusConnection scrapeDataWithUsername:item.username password:item.password completionHandler:^(ICResponse *response) {
 		
-		[self.progressLabel setStringValue:@"Loaded."];
-		[self.progressIndicator stop];
+		[self.progressIndicator stopAnimation:self];
+		[self.progressIndicator removeFromSuperview];
+		
 		self.terms = response.terms;
-		
-		NSRect bounds = self.termListParentView.bounds;
-		NSRect frame = [[self.window contentView] frame];
-		NSRect windowFrame = self.window.frame;
-
-		windowFrame.size.height += bounds.size.height;
-		windowFrame.origin.y -= bounds.size.height;
-		
-		[NSAnimationContext beginGrouping];
-		[self.window setFrame:windowFrame display:YES animate:YES];
-		[self.termListParentView setFrame:NSMakeRect(0, 0 + [self.window contentBorderThicknessForEdge:NSMinYEdge], frame.size.width, bounds.size.height)];
-		[self.window.contentView addSubview:self.termListParentView];
-		[NSAnimationContext endGrouping];
 		
 	}];
 	[campusConnection release];
