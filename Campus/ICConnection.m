@@ -130,23 +130,21 @@
 														// Assignment parsing process:
 														// 1) Check to see if table has grades in it at all.
 														if ([[table objectForKey:@"nodeChildArray"] count] > 2) {
-															// 2) If it does, look for the table's first row of the class 'detailFormHeader', which will contain the entire table's name. (The other detailFormHeader is at the bottom and contains the point & grade totals.)
-															if ([[[[table objectForKey:@"nodeChildArray"] objectAtIndex:0] objectForKey:@"nodeAttributeArray"] containsObject:[NSDictionary dictionaryWithObjectsAndKeys:@"class", @"attributeName", @"detailFormHeader", @"nodeContent", nil]]) {
-																// 3) Use this name to make sure that the data for classes whose grades are split into 9 week blocks is recognized and respected.
-																NSString *sectionName = [[[[[table objectForKey:@"nodeChildArray"] objectAtIndex:0] objectForKey:@"nodeChildArray"] objectAtIndex:0] objectForKey:@"nodeContent"];
-															}
+															
+															// The table currently contains grades.
+															
 														}
 														
-														// 4) Next, if the table has grades, parse the grades. This will involve...
+														// 2) Next, if the table has grades, parse the grades. This will involve...
 														//		- Breaking the table down into its assignment categories. (Use Xpath & for loop?)
 														//		- Use regex to see if assignment categories include percentages, thus finding out whether grades average or accumulate.
 														//		- Parse each individual assignment, and make an array of assignments for each assignment category.
 														//		- Add these arrays to a dictionary, and make the keys be the names of the assignment categories.
-														// 5) At this point, we should stop working inside of this for loop.
-														// 6) Add each assignment dictionary to its course by making it a property in ICCourse.
-														// 7) Parse grading scale table, and do some math with assignment grades to determine overall class grade. (Don't just read it from the grade summary – it's unreliable.)
-														// 8) Add class grade to each course object by making it an ICCourse property as well.
-														// 9) That's it! This block should be complete, and the fully populated course should be added to its term.
+														// 3) At this point, we should stop working inside of this for loop.
+														// 4) Add each assignment dictionary to its course by making it a property in ICCourse.
+														// 5) Parse grading scale table, and do some math with assignment grades to determine overall class grade. (Don't just read it from the grade summary – it's unreliable.)
+														// 6) Add class grade to each course object by making it an ICCourse property as well.
+														// 7) That's it! This block should be complete, and the fully populated course should be added to its term.
 														
 													}
 													
