@@ -25,8 +25,9 @@
 	self.completionHandler = theCompletionHandler;
 	NSURL *url = [NSURL  URLWithString:@"https://campus.dpsk12.org/campus/verify.jsp"];
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+	[request setValue:@"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_6; en-us) AppleWebKit/533.19.4 (KHTML, like Gecko) Version/5.0.3 Safari/533.19.4" forHTTPHeaderField:@"User-Agent"];
 	[request setHTTPMethod:@"POST"];
-	[request setHTTPBody:[[NSString stringWithFormat:@"appName=icprod&username=%@&password=%@", user, password] dataUsingEncoding:NSUTF8StringEncoding]];
+	[request setHTTPBody:[[NSString stringWithFormat:@"screen=1680x1050&appName=icprod&username=%@&password=%@", user, password] dataUsingEncoding:NSUTF8StringEncoding]];
 	NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 	if (connection) self.receivedData = [NSMutableData data];
 }
