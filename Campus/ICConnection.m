@@ -114,7 +114,7 @@
 										course.instructor = instructor;
 										course.url = courseURL;
 										
-										if ([courseName isEqualToString:@"American Lit & Comp Honors S1"]) { // For testing only. My brain can only handle one assload of assignment data at once.
+										if ([courseName isEqualToString:@"Spanish 3 Honors S2"]) { // For testing only. My brain can only handle one assload of assignment data at once.
 											// Scrape and add grade data to the course, if it contains a gradebook.
 											if (course.url) {
 												NSURLRequest *gradebookRequest = [NSURLRequest requestWithURL:course.url];
@@ -122,21 +122,44 @@
 													
 													NSString *tableQuery = @"/html/body/table/tr[3]/td[2]/table/tr[3]/td/table";
 													NSArray *tableQueryResults = PerformHTMLXPathQuery(gradebookResponseData, tableQuery);
-													for (NSUInteger tableIndex = 1; tableIndex < ([tableQueryResults count] - 1); tableIndex++) { // Starts at 1 and ends before the last table to skip grade summary table and grading scale table.
+													
+													
+													
+													NSUInteger tableIndex = 0;
+													// This loop is going to happen twice. The first time, we're checking to see if there's a ChoraleTable™, at which point we'll do something completely different, and the second time, we're actually parsing the grades if it's a normal gradebook.
+													for (tableIndex = 1; tableIndex < ([tableQueryResults count] - 2); tableIndex++) { // Starts at 1 and ends 2 tables before the last table to skip grade summary table, progress/eligibility table, and grading scale table.
+														
+													}
+													
+													
+													
+													
+													
+													// Okay. The number of terms tells us the number of 9 week block tables 
+													
+													
+													
+													
+													
+													for (NSUInteger tableIndex = 1; tableIndex < ([tableQueryResults count] - 2); tableIndex++) { // Starts at 1 and ends 2 tables before the last table to skip grade summary table, progress/eligibility table, and grading scale table.
 														NSDictionary *table = [tableQueryResults objectAtIndex:tableIndex];
 														// Yeah... it's obnoxious. Don't mess with it till' we're done parsing though, because we need a log more obnoxious than the assignment data itself to be able to quickly distinguish between the tables.
 														//NSLog(@"\n\n\n\n\n****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************TABLE, BITCH****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************\n\n\n\n\n%@", table);
 														
-														// Assignment parsing process:
-														// 1) Check to see if table has grades in it at all.
+														// We're now looping through all of the relevant tables (those that might have assignments) in the gradebook. First, check to see if the table contains any assignments at all.
 														if ([[table objectForKey:@"nodeChildArray"] count] > 2) {
+															// Next, parse the assignments, starting by breaking the table down into its assignment categories.
+															NSMutableDictionary *assignmentCategoryRowIndices = [NSMutableDictionary dictionary];
+															for (NSUInteger trIndex = 1; trIndex < [[table objectForKey:@"nodeChildArray"] count]; trIndex++) {
+																
+																if ((![[[table objectForKey:@"nodeChildArray"] objectAtIndex:trIndex] objectForKey:@"nodeAttributeArray"]) && ([[[[table objectForKey:@"nodeChildArray"] objectAtIndex:trIndex] objectForKey:@"nodeChildArray"] count] == 1)) { // A row without any attributes and with exactly one child (a td) is a row containing the name of an assignment category.
+																	NSString *assignmentCategoryName = [[[[[table objectForKey:@"nodeChildArray"] objectAtIndex:trIndex] objectForKey:@"nodeChildArray"] objectAtIndex:0] objectForKey:@"nodeContent"];
+																
+																}
 															
-															// The table currently contains grades.
-															
+															}
 														}
 														
-														// 2) Next, if the table has grades, parse the grades. This will involve...
-														//		- Breaking the table down into its assignment categories. (Use Xpath & for loop?)
 														//		- Use regex to see if assignment categories include percentages, thus finding out whether grades average or accumulate.
 														//		- Parse each individual assignment, and make an array of assignments for each assignment category.
 														//		- Add these arrays to a dictionary, and make the keys be the names of the assignment categories.
@@ -147,6 +170,12 @@
 														// 7) That's it! This block should be complete, and the fully populated course should be added to its term.
 														
 													}
+													
+													
+													
+													
+													
+													
 													
 													// Add the completed course to the term in which we are currently working.
 													[[terms objectAtIndex:columnIndex-1] addCourse:course];
