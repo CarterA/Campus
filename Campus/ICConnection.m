@@ -114,7 +114,7 @@
 										course.instructor = instructor;
 										course.url = courseURL;
 										
-										if ([courseName isEqualToString:@"Spanish 3 Honors S2"]) { // For testing only. My brain can only handle one assload of assignment data at once.
+										if ([courseName isEqualToString:@"Advisement"]) { // For testing only. My brain can only handle one assload of assignment data at once.
 											// Scrape and add grade data to the course, if it contains a gradebook.
 											if (course.url) {
 												NSURLRequest *gradebookRequest = [NSURLRequest requestWithURL:course.url];
@@ -124,7 +124,7 @@
 													NSArray *tableQueryResults = PerformHTMLXPathQuery(gradebookResponseData, tableQuery);
 													
 													// Okay. The purpose of this whole clusterfuck is to get an array of the names of all the tables in the gradebook which potentially contain actual assignments. How do we pull that off? We do it by parsing through the "Grading Task Summary" table, whose cells, believe it or not, correspond to specific tables in the gradebook.
-													NSMutableArray *namesOfTablesWithAssignments = [NSMutableArray array];
+													NSMutableDictionary *namesAndTermsOfTablesWithAssignments = [NSMutableDictionary dictionary];
 													NSMutableArray *termHeaderNames = [NSMutableArray array];
 													for (NSUInteger termHeaderIndex = 1; termHeaderIndex < [[[[[tableQueryResults objectAtIndex:0] objectForKey:@"nodeChildArray"] objectAtIndex:2] objectForKey:@"nodeChildArray"] count]; termHeaderIndex++) { // Start at 1 to skip the "Grading Task" header.
 														[termHeaderNames addObject:[[[[[[tableQueryResults objectAtIndex:0] objectForKey:@"nodeChildArray"] objectAtIndex:2] objectForKey:@"nodeChildArray"] objectAtIndex:termHeaderIndex] objectForKey:@"nodeContent"]];
@@ -136,14 +136,15 @@
 															if ([[summaryCell objectForKey:@"nodeAttributeArray"] count]) { // If the cell has any attributes...
 																if (![[[[summaryCell objectForKey:@"nodeAttributeArray"] objectAtIndex:1] objectForKey:@"nodeContent"] isEqualToString:@"gridGradeExpected"]) { // Then as long as the attribute isn't gridGradeExpected, it has contents, and thus corresponds to a table with assignments.
 																	NSString *nameOfTableWithAssignments = [NSString stringWithFormat:@"%@ %@ Detail", [termHeaderNames objectAtIndex:(summaryCellIndex - 1)], gradingTaskName];
-																	[namesOfTablesWithAssignments addObject:nameOfTableWithAssignments];
+																	[namesAndTermsOfTablesWithAssignments setObject:[termHeaderNames objectAtIndex:(summaryCellIndex - 1)] forKey:nameOfTableWithAssignments];
 																}
 															}
 														}
 													}
+													NSArray *namesOfTablesWithAssignments = [namesAndTermsOfTablesWithAssignments allKeys];
 													
 													// Here are those names we talked about earlier...
-													NSLog(@"%@", namesOfTablesWithAssignments);
+													//NSLog(@"%@", namesOfTablesWithAssignments);
 													// And here's what needs to happen with them:
 													// Loop through them like we were doing before, but still check to make sure they have assignments because once in a while they won't.
 													// Use the *name of the table* to determine which term the grades belong to, and ONLY PARSE THE GRADES FOR THE TERM WE ARE WORKING IN.
@@ -155,6 +156,17 @@
 													// And with all of this, keep in mind that the final goal is to have duplicate categories merged, without their weights displayed.
 													// The weight stuff can all happen in the background; there's no need to actually display them in the app, as we're more interested in the total score for a category than its weight in the class, and overall, in the score for the entire class.
 													// That really should be it. We've thought this all through thoroughly, and there's no reason it should need to be redone. That's all.
+													
+													// I'm not going to break up that paragraph until I've finished all of it, so for now, here is the work in progress:
+													NSMutableArray *tablesWithAssignments = [NSMutableArray array]; // Set up an array of all the actual tables we need to read assignments from.
+													for (NSDictionary *table in tableQueryResults) { // Check each table in the query results...
+														NSString *tableName = [[[[[table objectForKey:@"nodeChildArray"] objectAtIndex:0] objectForKey:@"nodeChildArray"] objectAtIndex:0] objectForKey:@"nodeContent"]; // Get the name of the table...
+														if ([namesOfTablesWithAssignments containsObject:tableName]) { // And see if it matches one of the names in namesOfTablesWithAssignments.
+															if ([[namesAndTermsOfTablesWithAssignments objectForKey:tableName] isEqualToString:[[terms objectAtIndex:(columnIndex - 1)] name]]) { // Only add the table to the array if it belongs to the term we are currently working in.
+																[tablesWithAssignments addObject:table]; // Add the table (which is now guaranteed to contain grades for the current term we are working with) to the array.
+															}
+														}
+													}
 													
 													// Add the completed course to the term in which we are currently working.
 													[[terms objectAtIndex:columnIndex-1] addCourse:course];
