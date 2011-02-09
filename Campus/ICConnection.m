@@ -139,7 +139,7 @@
 															for (NSUInteger summaryCellIndex = 1; summaryCellIndex < [[[[[tableQueryResults objectAtIndex:0] objectForKey:@"nodeChildArray"] objectAtIndex:2] objectForKey:@"nodeChildArray"] count]; summaryCellIndex++) { // Now we're looping through all of the cells in the current row, excluding the row header cell.
 																NSDictionary *summaryCell = [[[[[tableQueryResults objectAtIndex:0] objectForKey:@"nodeChildArray"] objectAtIndex:summaryRowIndex] objectForKey:@"nodeChildArray"] objectAtIndex:summaryCellIndex]; // Isolate the current cell we're working in so we don't have to type all this crap out in the next few lines.
 																if ([[summaryCell objectForKey:@"nodeAttributeArray"] count]) { // If the cell has any attributes...
-																	if (![[[[summaryCell objectForKey:@"nodeAttributeArray"] objectAtIndex:1] objectForKey:@"nodeContent"] isEqualToString:@"gridGradeExpected"]) { // Then as long as the attribute isn't gridGradeExpected, it has contents, and thus corresponds to a table with assignments. (We're looking at the second attribute, because the first one is align.)
+																	if (![[summaryCell objectForKey:@"nodeAttributeArray"] containsObject:[NSDictionary dictionaryWithObjectsAndKeys:@"class", @"attributeName", @"gridGradeExpected", @"nodeContent", nil]]) { // Then as the class attribute isn't gridGradeExpected, it has contents, and thus corresponds to a table with assignments.
 																		NSString *nameOfTableWithAssignments = [NSString stringWithFormat:@"%@ %@ Detail", [termHeaderNames objectAtIndex:(summaryCellIndex - 1)], gradingTaskName]; // Put together the name of the table based on the pattern we determined IC uses.
 																		[namesAndTermsOfTablesWithAssignments setObject:[termHeaderNames objectAtIndex:(summaryCellIndex - 1)] forKey:nameOfTableWithAssignments]; // Add the name of the table and a string containing just the name of the term to which it belongs to the dictionary.
 																	}
@@ -149,7 +149,7 @@
 														NSArray *namesOfTablesWithAssignments = [namesAndTermsOfTablesWithAssignments allKeys]; // And here's our array of table names, which is just the keys from the dictionary (which we still need to look up the terms to which each of these tables belong later on).
 														
 														// Here are those names we talked about earlier...
-														//NSLog(@"%@", namesOfTablesWithAssignments);
+														NSLog(@"%@", namesOfTablesWithAssignments);
 														// And here's what needs to happen with them:
 														// Loop through them like we were doing before, but still check to make sure they have assignments because once in a while they won't.
 														// √ Use the *name of the table* to determine which term the grades belong to, and ONLY PARSE THE GRADES FOR THE TERM WE ARE WORKING IN.
@@ -180,7 +180,7 @@
 															if ([[[[table objectForKey:@"nodeChildArray"] objectAtIndex:1] objectForKey:@"nodeAttributeArray"] count]) { // If the second child in the table (the first tr after the table's header) contains any attributes...
 																if ([[[[[[table objectForKey:@"nodeChildArray"] objectAtIndex:1] objectForKey:@"nodeAttributeArray"] objectAtIndex:0] objectForKey:@"nodeContent"] isEqualToString:@"gridH2"]) { // Then if that attribute is gridH2, we have a ChoraleTable™! Rows whose class is gridH2 are never used at the top of a table, *except* for in ChoraleTables™.
 																	choraleTable = [table copy];
-																	NSLog(@"We have a ChoraleTable™!\n%@", choraleTable);
+																	[tablesWithAssignments removeObject:table];
 																}
 															}
 														}
