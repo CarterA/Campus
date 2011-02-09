@@ -17,7 +17,7 @@
 - (void)scrapeDataWithUsername:(NSString *)username password:(NSString *)password completionHandler:(ICConnectionCompletionHandler)completionHandler {
 	[[CampusLogin sharedLogin] loginAsUser:username withPassword:password completionHandler:^(NSData *loginResponse) {
 		
-		// Find the URL of the portal in the frame
+		// Find the URL of the portal in the frame.
 		NSString *loginResponseString = [[NSString alloc] initWithData:loginResponse encoding:NSUTF8StringEncoding];
 		__block NSURL *portalURL = nil;
 		[loginResponseString enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
@@ -33,7 +33,7 @@
 		[loginResponseString release];
 		NSLog(@"Portal URL: %@", portalURL);
 		
-		// Load up the portal
+		// Load up the portal.
 		NSURLRequest *portalRequest = [NSURLRequest requestWithURL:portalURL];
 		IKConnectionDelegate *portalRequestDelegate = [IKConnectionDelegate connectionDelegateWithDownloadProgress:nil uploadProgress:nil completion:^(NSData *portalResponseData, NSURLResponse *response, NSError *error) {
 			
@@ -44,11 +44,11 @@
 			NSURL *scheduleURL = [NSURL URLWithString:[@"https://campus.dpsk12.org/campus/" stringByAppendingString:[[[[queryResult objectAtIndex:0] objectForKey:@"nodeAttributeArray"] objectAtIndex:0] objectForKey:@"nodeContent"]]];
 			NSLog(@"Schedule URL: %@", scheduleURL);
 			
-			// Load the schedule page
+			// Load the schedule page.
 			NSURLRequest *scheduleRequest = [NSURLRequest requestWithURL:scheduleURL];
 			IKConnectionDelegate *scheduleRequestDelegate = [IKConnectionDelegate connectionDelegateWithDownloadProgress:nil uploadProgress:nil completion:^(NSData *scheduleResponseData, NSURLResponse *response, NSError *error) {
 				
-				// Create each term
+				// Create each term.
 				NSMutableArray *terms = [NSMutableArray array];
 				NSString *termQuery = @"/html/body/table/tr[3]/td[2]/table/tr[3]/td/table/tr[1]/th[@align='center']";
 				NSArray *termQueryResults = PerformHTMLXPathQuery(scheduleResponseData, termQuery);
@@ -65,9 +65,9 @@
 				// Populate each term with course, starting by finding how many rows there are.
 				NSString *rowQuery = @"/html/body/table/tr[3]/td[2]/table/tr[3]/td/table/tr";
 				NSArray *rowQueryResults = PerformHTMLXPathQuery(scheduleResponseData, rowQuery);
-				for (NSUInteger rowIndex = 1; rowIndex < rowQueryResults.count; rowIndex++) { // Start at index 1 to ignore the header
+				for (NSUInteger rowIndex = 1; rowIndex < rowQueryResults.count; rowIndex++) { // Start at index 1 to ignore the header.
 					NSDictionary *row = [rowQueryResults objectAtIndex:rowIndex];
-					for (NSUInteger columnIndex = 1; columnIndex < [[row objectForKey:@"nodeChildArray"] count]; columnIndex++) { // Again, start at 1 to ignore the headers
+					for (NSUInteger columnIndex = 1; columnIndex < [[row objectForKey:@"nodeChildArray"] count]; columnIndex++) { // Again, start at 1 to ignore the headers.
 						NSDictionary *cell = [[row objectForKey:@"nodeChildArray"] objectAtIndex:columnIndex];
 						
 						// First off, make sure this is actually a cell with a course in it. It will contain "EMPTY" if it isn't.
@@ -102,7 +102,7 @@
 											}
 										}
 										
-										// Parse course title into name and id
+										// Parse course title into name and id.
 										NSString *courseIdentifier = [[courseTitle componentsSeparatedByString:@" "] objectAtIndex:0];
 										NSString *courseName = [[courseTitle componentsSeparatedByString:[courseIdentifier stringByAppendingString:@" "]] objectAtIndex:1];
 										
@@ -115,7 +115,7 @@
 										course.url = courseURL;
 										
 										if ([courseName isEqualToString:@"Advisement"]) { // For testing only. My brain can only handle one assload of assignment data at once.
-											// Scrape and add grade data to the course, if it contains a gradebook.
+											// Scrape and add assignment data to the course, if it contains a gradebook.
 											if (course.url) {
 												NSURLRequest *gradebookRequest = [NSURLRequest requestWithURL:course.url];
 												IKConnectionDelegate *gradebookRequestDelegate = [IKConnectionDelegate connectionDelegateWithDownloadProgress:nil uploadProgress:nil completion:^(NSData *gradebookResponseData, NSURLResponse *response, NSError *error) {
@@ -124,30 +124,30 @@
 													NSArray *tableQueryResults = PerformHTMLXPathQuery(gradebookResponseData, tableQuery);
 													
 													// Okay. The purpose of this whole clusterfuck is to get an array of the names of all the tables in the gradebook which potentially contain actual assignments. How do we pull that off? We do it by parsing through the "Grading Task Summary" table, whose cells, believe it or not, correspond to specific tables in the gradebook.
-													NSMutableDictionary *namesAndTermsOfTablesWithAssignments = [NSMutableDictionary dictionary];
-													NSMutableArray *termHeaderNames = [NSMutableArray array];
-													for (NSUInteger termHeaderIndex = 1; termHeaderIndex < [[[[[tableQueryResults objectAtIndex:0] objectForKey:@"nodeChildArray"] objectAtIndex:2] objectForKey:@"nodeChildArray"] count]; termHeaderIndex++) { // Start at 1 to skip the "Grading Task" header.
-														[termHeaderNames addObject:[[[[[[tableQueryResults objectAtIndex:0] objectForKey:@"nodeChildArray"] objectAtIndex:2] objectForKey:@"nodeChildArray"] objectAtIndex:termHeaderIndex] objectForKey:@"nodeContent"]];
+													NSMutableDictionary *namesAndTermsOfTablesWithAssignments = [NSMutableDictionary dictionary]; // We're going to have just a plain ol' array of these names later, but we're going to have a dictionary as well so we can look up the terms to which each of the tables belong without unnecessarily parsing out the table names.
+													NSMutableArray *termHeaderNames = [NSMutableArray array]; // This is going to contain the names of the *column headers*.
+													for (NSUInteger termHeaderIndex = 1; termHeaderIndex < [[[[[tableQueryResults objectAtIndex:0] objectForKey:@"nodeChildArray"] objectAtIndex:2] objectForKey:@"nodeChildArray"] count]; termHeaderIndex++) { // Start at 1 to skip the "Grading Task" header (which is the column header for the row headers).
+														[termHeaderNames addObject:[[[[[[tableQueryResults objectAtIndex:0] objectForKey:@"nodeChildArray"] objectAtIndex:2] objectForKey:@"nodeChildArray"] objectAtIndex:termHeaderIndex] objectForKey:@"nodeContent"]]; // Add the name of the current column header.
 													}
 													for (NSUInteger summaryRowIndex = 3; summaryRowIndex < [[[tableQueryResults objectAtIndex:0] objectForKey:@"nodeChildArray"] count]; summaryRowIndex++) { // Start at 3 to skip all of the header rows, only working with rows that might have content.
-														NSString *gradingTaskName = [[[[[[tableQueryResults objectAtIndex:0] objectForKey:@"nodeChildArray"] objectAtIndex:summaryRowIndex] objectForKey:@"nodeChildArray"] objectAtIndex:0] objectForKey:@"nodeContent"];
-														for (NSUInteger summaryCellIndex = 1; summaryCellIndex < [[[[[tableQueryResults objectAtIndex:0] objectForKey:@"nodeChildArray"] objectAtIndex:2] objectForKey:@"nodeChildArray"] count]; summaryCellIndex++) {
-															NSDictionary *summaryCell = [[[[[tableQueryResults objectAtIndex:0] objectForKey:@"nodeChildArray"] objectAtIndex:summaryRowIndex] objectForKey:@"nodeChildArray"] objectAtIndex:summaryCellIndex];
+														NSString *gradingTaskName = [[[[[[tableQueryResults objectAtIndex:0] objectForKey:@"nodeChildArray"] objectAtIndex:summaryRowIndex] objectForKey:@"nodeChildArray"] objectAtIndex:0] objectForKey:@"nodeContent"]; // The "grading task name" is the name of the *row header*.
+														for (NSUInteger summaryCellIndex = 1; summaryCellIndex < [[[[[tableQueryResults objectAtIndex:0] objectForKey:@"nodeChildArray"] objectAtIndex:2] objectForKey:@"nodeChildArray"] count]; summaryCellIndex++) { // Now we're looping through all of the cells in the current row, excluding the row header cell.
+															NSDictionary *summaryCell = [[[[[tableQueryResults objectAtIndex:0] objectForKey:@"nodeChildArray"] objectAtIndex:summaryRowIndex] objectForKey:@"nodeChildArray"] objectAtIndex:summaryCellIndex]; // Isolate the current cell we're working in so we don't have to type all this crap out in the next few lines.
 															if ([[summaryCell objectForKey:@"nodeAttributeArray"] count]) { // If the cell has any attributes...
 																if (![[[[summaryCell objectForKey:@"nodeAttributeArray"] objectAtIndex:1] objectForKey:@"nodeContent"] isEqualToString:@"gridGradeExpected"]) { // Then as long as the attribute isn't gridGradeExpected, it has contents, and thus corresponds to a table with assignments.
-																	NSString *nameOfTableWithAssignments = [NSString stringWithFormat:@"%@ %@ Detail", [termHeaderNames objectAtIndex:(summaryCellIndex - 1)], gradingTaskName];
-																	[namesAndTermsOfTablesWithAssignments setObject:[termHeaderNames objectAtIndex:(summaryCellIndex - 1)] forKey:nameOfTableWithAssignments];
+																	NSString *nameOfTableWithAssignments = [NSString stringWithFormat:@"%@ %@ Detail", [termHeaderNames objectAtIndex:(summaryCellIndex - 1)], gradingTaskName]; // Put together the name of the table based on the pattern we determined IC uses.
+																	[namesAndTermsOfTablesWithAssignments setObject:[termHeaderNames objectAtIndex:(summaryCellIndex - 1)] forKey:nameOfTableWithAssignments]; // Add the name of the table and a string containing just the name of the term to which it belongs to the dictionary.
 																}
 															}
 														}
 													}
-													NSArray *namesOfTablesWithAssignments = [namesAndTermsOfTablesWithAssignments allKeys];
+													NSArray *namesOfTablesWithAssignments = [namesAndTermsOfTablesWithAssignments allKeys]; // And here's our array of table names, which is just the keys from the dictionary (which we still need to look up the terms to which each of these tables belong later on).
 													
 													// Here are those names we talked about earlier...
 													//NSLog(@"%@", namesOfTablesWithAssignments);
 													// And here's what needs to happen with them:
 													// Loop through them like we were doing before, but still check to make sure they have assignments because once in a while they won't.
-													// Use the *name of the table* to determine which term the grades belong to, and ONLY PARSE THE GRADES FOR THE TERM WE ARE WORKING IN.
+													// √ Use the *name of the table* to determine which term the grades belong to, and ONLY PARSE THE GRADES FOR THE TERM WE ARE WORKING IN.
 													// If the grades for the current term reside within more than one table (see: Chorale), merge them into one theoretical table.
 													// In other words, if each table has an "applied voice" category, treat it all as one category, and populate it with the "applied voice" assignments from both tables.
 													// And after all of this, before we calculate the grade, check to see if one of the tables (which WILL be included in namesOfTablesWithAssignments) is a ChoraleTable™.
@@ -158,7 +158,8 @@
 													// That really should be it. We've thought this all through thoroughly, and there's no reason it should need to be redone. That's all.
 													
 													// I'm not going to break up that paragraph until I've finished all of it, so for now, here is the work in progress:
-													NSMutableArray *tablesWithAssignments = [NSMutableArray array]; // Set up an array of all the actual tables we need to read assignments from.
+													// Set up an array of all the actual tables we need to read assignments from.
+													NSMutableArray *tablesWithAssignments = [NSMutableArray array]; // Create the empty array to fill with tables.
 													for (NSDictionary *table in tableQueryResults) { // Check each table in the query results...
 														NSString *tableName = [[[[[table objectForKey:@"nodeChildArray"] objectAtIndex:0] objectForKey:@"nodeChildArray"] objectAtIndex:0] objectForKey:@"nodeContent"]; // Get the name of the table...
 														if ([namesOfTablesWithAssignments containsObject:tableName]) { // And see if it matches one of the names in namesOfTablesWithAssignments.
@@ -166,6 +167,12 @@
 																[tablesWithAssignments addObject:table]; // Add the table (which is now guaranteed to contain grades for the current term we are working with) to the array.
 															}
 														}
+													}
+													
+													for (NSDictionary *table in tablesWithAssignments) {
+														// Check for ChoraleTables™.
+														// Check for assignments.
+														// Parse assignments.
 													}
 													
 													// Add the completed course to the term in which we are currently working.
