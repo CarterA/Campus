@@ -149,13 +149,13 @@
 														NSArray *namesOfTablesWithAssignments = [namesAndTermsOfTablesWithAssignments allKeys]; // And here's our array of table names, which is just the keys from the dictionary (which we still need to look up the terms to which each of these tables belong later on).
 														
 														// Here are those names we talked about earlier...
-														NSLog(@"%@", namesOfTablesWithAssignments);
+														//NSLog(@"%@", namesOfTablesWithAssignments);
 														// And here's what needs to happen with them:
-														// Loop through them like we were doing before, but still check to make sure they have assignments because once in a while they won't.
+														// √ Loop through them like we were doing before, but still check to make sure they have assignments because once in a while they won't.
 														// √ Use the *name of the table* to determine which term the grades belong to, and ONLY PARSE THE GRADES FOR THE TERM WE ARE WORKING IN.
 														// If the grades for the current term reside within more than one table (see: Chorale), merge them into one theoretical table.
 														// In other words, if each table has an "applied voice" category, treat it all as one category, and populate it with the "applied voice" assignments from both tables.
-														// And after all of this, before we calculate the grade, check to see if one of the tables (which WILL be included in namesOfTablesWithAssignments) is a ChoraleTable™.
+														// √ And after all of this, before we calculate the grade, check to see if one of the tables (which WILL be included in namesOfTablesWithAssignments) is a ChoraleTable™.
 														// If it is, get the *points* (not the percentages; use the points to calculate them) directly from that instead of adding the assignments' points up (we're doing this to avoid having to deal with the mix of weighted and unweighted categories).
 														// If there's not a ChoraleTable™, go ahead and calculate the course's grade by adding all the points, and respecting category weights if they are present.
 														// And with all of this, keep in mind that the final goal is to have duplicate categories merged, without their weights displayed.
@@ -177,13 +177,36 @@
 														// Check for a ChoraleTable™. (Okay, alright. I'll clarify. A ChoraleTable™ is a table containing subtotals of grades from other tables and adding them up, which only exists when grades for a term are split accross multiple tables. ChoraleTables™ earned their name from Chorale, the class in which they were discovered.)
 														NSDictionary *choraleTable = nil; // By default, the ChoraleTable™ doesn't exist.
 														for (NSDictionary *table in tablesWithAssignments) {
-															if ([[[[table objectForKey:@"nodeChildArray"] objectAtIndex:1] objectForKey:@"nodeAttributeArray"] count]) { // If the second child in the table (the first tr after the table's header) contains any attributes...
-																if ([[[[[[table objectForKey:@"nodeChildArray"] objectAtIndex:1] objectForKey:@"nodeAttributeArray"] objectAtIndex:0] objectForKey:@"nodeContent"] isEqualToString:@"gridH2"]) { // Then if that attribute is gridH2, we have a ChoraleTable™! Rows whose class is gridH2 are never used at the top of a table, *except* for in ChoraleTables™.
-																	choraleTable = [table copy];
-																	[tablesWithAssignments removeObject:table];
+															if ([[[[table objectForKey:@"nodeChildArray"] objectAtIndex:1] objectForKey:@"nodeAttributeArray"] containsObject:[NSDictionary dictionaryWithObjectsAndKeys:@"class", @"attributeName", @"gridH2", @"nodeContent", nil]]) { // If the second child in the table (the first tr after the table's header) has its class set to gridH2, we have a ChoraleTable™! Rows whose class is gridH2 are never used at the top of a table, *except* for in ChoraleTables™.
+																choraleTable = [table copy]; // A ChoraleTable™ does exist, so store it in this variable to deal with later.
+																[tablesWithAssignments removeObject:table]; // Remove the ChoraleTable™ from the list so we don't have to deal with it while we're parsing out assignment data.
+															}
+														}
+														
+														// This whole thing basically just lumps all of the rows of raw assignment data into arrays for each assignment category so that they're easier to work with.
+														NSMutableDictionary *assignmentCategoriesWithRawAssignmentData = [NSMutableDictionary dictionary];
+														for (NSDictionary *table in tablesWithAssignments) {
+															if ([[table objectForKey:@"nodeChildArray"] count] > 2) { // First, check to see if the table actually contains assignments. (Yes, believe it or not, we can still have empty tables at this point. As far as we know, these are always going to be Progress/Eligibility tables which often contain data in the Grading Summary Table even when they're empty, but you never know.)
+																// We've got two variables for the assignment category here so that we can keep track of when we switch into a new category, since they aren't organized hierarchially in IC. (In other words, they DIDN'T add another table for each assignment category. I know, right?)
+																NSString *currentAssignmentCategory = nil;
+																NSString *lastAssignmentCategory = nil;
+																for (NSDictionary *assignmentTableRow in [table objectForKey:@"nodeChildArray"]) {
+																	if (!([[assignmentTableRow objectForKey:@"nodeAttributeArray"] containsObject:[NSDictionary dictionaryWithObjectsAndKeys:@"class", @"attributeName", @"detailFormHeader", @"nodeContent", nil]] || [[assignmentTableRow objectForKey:@"nodeAttributeArray"] containsObject:[NSDictionary dictionaryWithObjectsAndKeys:@"class", @"attributeName", @"gridH3", @"nodeContent", nil]] || [[assignmentTableRow objectForKey:@"nodeAttributeArray"] containsObject:[NSDictionary dictionaryWithObjectsAndKeys:@"class", @"attributeName", @"gridH2", @"nodeContent", nil]] || [[assignmentTableRow objectForKey:@"nodeAttributeArray"] containsObject:[NSDictionary dictionaryWithObjectsAndKeys:@"style", @"attributeName", @"height: 0px;", @"nodeContent", nil]])) { // Hooray for obnoxiously long lines of code with even longer comments! For real though, all this does is screen out the types of rows we don't care about.
+																		if (![[assignmentTableRow objectForKey:@"nodeAttributeArray"] count]) { // If the row doesn't have any attributes, then it's an assignment category header.
+																			currentAssignmentCategory = [[[assignmentTableRow objectForKey:@"nodeChildArray"] objectAtIndex:0] objectForKey:@"nodeContent"]; // Set the current assignment category to the new one we just found.
+																		}
+																		else { // If it's just a plain' ol' assignment row...
+																			[[assignmentCategoriesWithRawAssignmentData objectForKey:currentAssignmentCategory] addObject:assignmentTableRow]; // Add it to the array of rows to parse for the current assignment category.
+																		}
+																		if (![currentAssignmentCategory isEqualToString:lastAssignmentCategory]) { // If we found a new assignment category...
+																			[assignmentCategoriesWithRawAssignmentData setObject:[NSMutableArray array] forKey:currentAssignmentCategory]; // Add it to the dictionary, and set its object to an empty array to hold its assigment rows.
+																			lastAssignmentCategory = currentAssignmentCategory; // And set the last assignment category to the current one, so we know if we run into another new one.
+																		}
+																	}
 																}
 															}
 														}
+														NSLog(@"%@", [assignmentCategoriesWithRawAssignmentData allKeys]); // Here's yer dang category names!
 														
 														// Add the completed course to the term in which we are currently working.
 														[[terms objectAtIndex:columnIndex-1] addCourse:course];
