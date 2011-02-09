@@ -114,9 +114,10 @@
 										course.instructor = instructor;
 										course.url = courseURL;
 										
-										if ([courseName isEqualToString:@"Advisement"]) { // For testing only. My brain can only handle one assload of assignment data at once.
+										if ([courseName isEqualToString:@"DSA Chorale Intermediate 2 S1"]) { // For testing only. My brain can only handle one assload of assignment data at once.
 											// Scrape and add assignment data to the course, if it contains a gradebook.
 											if (course.url) {
+												// Load up the gradebook.
 												NSURLRequest *gradebookRequest = [NSURLRequest requestWithURL:course.url];
 												IKConnectionDelegate *gradebookRequestDelegate = [IKConnectionDelegate connectionDelegateWithDownloadProgress:nil uploadProgress:nil completion:^(NSData *gradebookResponseData, NSURLResponse *response, NSError *error) {
 													
@@ -134,7 +135,7 @@
 														for (NSUInteger summaryCellIndex = 1; summaryCellIndex < [[[[[tableQueryResults objectAtIndex:0] objectForKey:@"nodeChildArray"] objectAtIndex:2] objectForKey:@"nodeChildArray"] count]; summaryCellIndex++) { // Now we're looping through all of the cells in the current row, excluding the row header cell.
 															NSDictionary *summaryCell = [[[[[tableQueryResults objectAtIndex:0] objectForKey:@"nodeChildArray"] objectAtIndex:summaryRowIndex] objectForKey:@"nodeChildArray"] objectAtIndex:summaryCellIndex]; // Isolate the current cell we're working in so we don't have to type all this crap out in the next few lines.
 															if ([[summaryCell objectForKey:@"nodeAttributeArray"] count]) { // If the cell has any attributes...
-																if (![[[[summaryCell objectForKey:@"nodeAttributeArray"] objectAtIndex:1] objectForKey:@"nodeContent"] isEqualToString:@"gridGradeExpected"]) { // Then as long as the attribute isn't gridGradeExpected, it has contents, and thus corresponds to a table with assignments.
+																if (![[[[summaryCell objectForKey:@"nodeAttributeArray"] objectAtIndex:1] objectForKey:@"nodeContent"] isEqualToString:@"gridGradeExpected"]) { // Then as long as the attribute isn't gridGradeExpected, it has contents, and thus corresponds to a table with assignments. (We're looking at the second attribute, because the first one is align.)
 																	NSString *nameOfTableWithAssignments = [NSString stringWithFormat:@"%@ %@ Detail", [termHeaderNames objectAtIndex:(summaryCellIndex - 1)], gradingTaskName]; // Put together the name of the table based on the pattern we determined IC uses.
 																	[namesAndTermsOfTablesWithAssignments setObject:[termHeaderNames objectAtIndex:(summaryCellIndex - 1)] forKey:nameOfTableWithAssignments]; // Add the name of the table and a string containing just the name of the term to which it belongs to the dictionary.
 																}
@@ -169,10 +170,15 @@
 														}
 													}
 													
+													// Check for a ChoraleTable™. (Okay, alright. I'll clarify. A ChoraleTable™ is a table containing subtotals of grades from other tables and adding them up, which only exists when grades for a term are split accross multiple tables. ChoraleTables™ earned their name from Chorale, the class in which they were discovered.)
+													NSDictionary *choraleTable = nil; // By default, the ChoraleTable™ doesn't exist.
 													for (NSDictionary *table in tablesWithAssignments) {
-														// Check for ChoraleTables™.
-														// Check for assignments.
-														// Parse assignments.
+														if ([[[[table objectForKey:@"nodeChildArray"] objectAtIndex:1] objectForKey:@"nodeAttributeArray"] count]) { // If the second child in the table (the first tr after the table's header) contains any attributes...
+															if ([[[[[[table objectForKey:@"nodeChildArray"] objectAtIndex:1] objectForKey:@"nodeAttributeArray"] objectAtIndex:0] objectForKey:@"nodeContent"] isEqualToString:@"gridH2"]) { // Then if that attribute is gridH2, we have a ChoraleTable™! Rows whose class is gridH2 are never used at the top of a table, *except* for in ChoraleTables™.
+																choraleTable = [table copy];
+																NSLog(@"We have a ChoraleTable™!\n%@", choraleTable);
+															}
+														}
 													}
 													
 													// Add the completed course to the term in which we are currently working.
