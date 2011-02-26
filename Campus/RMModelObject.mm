@@ -289,7 +289,7 @@ template<typename T> void SetRawValueSlow(id const self, SEL _cmd, T value)
 {
 	const char* const propertyName = PropertyNameFromSetterName([self class], _cmd);
 	
-	MOLog(@"-[%@ %s]: %s (%s)", NSStringFromClass([self class]), _cmd, propertyName, __PRETTY_FUNCTION__);
+	//MOLog(@"-[%@ %s]: %s (%s)", NSStringFromClass([self class]), _cmd, propertyName, __PRETTY_FUNCTION__);
 
 	Ivar const ivar = class_getInstanceVariable([self class], propertyName);
 	T oldValue;
@@ -331,7 +331,7 @@ template<ObjCPropertyAssignmentMode assignmentMode, bool slowMode> void SetRawId
 	
 	// Uninitialised intentionally
 	NSString* propertyNameObject;
-	switch(slowMode)
+	switch((int)slowMode)
 	{
 		case true:
 		{
@@ -365,7 +365,7 @@ template<ObjCPropertyAssignmentMode assignmentMode, bool slowMode> void SetRawId
 	
 	objc_assign_ivar(value, self, ivar_getOffset(class_getInstanceVariable([self class], propertyName)));
 	
-	switch(slowMode)
+	switch((int)slowMode)
 	{
 		case true:
 			if([self respondsToSelector:@selector(propertyDidChange:from:to:)]) [(id<RMModelObjectPropertyChanging>)self propertyDidChange:propertyNameObject from:oldValue to:value];
@@ -660,7 +660,7 @@ static inline id RMAllocateObject(Class self, NSZone* zone)
 	id allocatedObject = NSAllocateObject(self, 0, zone);
 	if(allocatedObject == nil)
 	{
-		NSLog(@"NSAllocateObject(%@[%p], 0, %@) returned nil", NSStringFromClass([self class]), self, zone);
+		//NSLog(@"NSAllocateObject(%@[%p], 0, %@) returned nil", NSStringFromClass([self class]), self, zone);
 		
 		return nil;
 	}
@@ -679,26 +679,26 @@ static BOOL inline RMClassAddMethod(Class cls, SEL name, IMP imp, const char* ty
 {
 	if(imp == NULL)
 	{
-		NSLog(@"RMClassAddMethod() passed a NULL IMP for %s", name);
+		//NSLog(@"RMClassAddMethod() passed a NULL IMP for %s", name);
 		return NO;
 	}
 	
 	const BOOL didAddMethod = class_addMethod(cls, name, imp, types);
-	if(!didAddMethod) NSLog(@"class_addMethod returned NO for `%s' (IMP=%p, typeEncoding=%s)", name, imp, types);
+	//if(!didAddMethod) NSLog(@"class_addMethod returned NO for `%s' (IMP=%p, typeEncoding=%s)", name, imp, types);
 	
 	return didAddMethod;
 }
 
-Class RMModelObjectInitializeDynamicClass(Class self)
+Class RMModelObjectInitializeDynamicClass(Class localSelf)
 {
-	NSString* className = NSStringFromClass([self class]);
+	NSString* className = NSStringFromClass([localSelf class]);
 	
 	if([className hasPrefix:@"RMModelObject_"]) return objc_getClass([className UTF8String]);
 	   
 	NSString* dynamicClassName = [NSString stringWithFormat:@"RMModelObject_%@", className];
     if(Class existingDynamicClass = objc_getClass([dynamicClassName UTF8String])) return existingDynamicClass;
 	
-	Class dynamicClass = objc_allocateClassPair(self, [dynamicClassName UTF8String], 0);
+	Class dynamicClass = objc_allocateClassPair(localSelf, [dynamicClassName UTF8String], 0);
 	if(dynamicClass == Nil)
 	{
 		NSLog(@"objc_allocateClassPair returned NULL");
@@ -706,13 +706,13 @@ Class RMModelObjectInitializeDynamicClass(Class self)
 	}
 	
 	unsigned numberOfProperties = 0;
-	objc_property_t* properties = class_copyPropertyList(self, &numberOfProperties);
+	objc_property_t* properties = class_copyPropertyList(localSelf, &numberOfProperties);
 
 	if (numberOfProperties == 0)
 		@throw [NSException exceptionWithName:@"InvalidClassException" reason:
 				[NSString stringWithFormat:@"You must define at least one dynamic property on the RMModelObject class \"%@\" (or it will just crash anyway)", className] userInfo:nil];
 	
-	MOLog(@"RMModelObjectInitializeDynamicClass for self=%@ found %u properties", self, numberOfProperties);
+	MOLog(@"RMModelObjectInitializeDynamicClass for self=%@ found %u properties", localSelf, numberOfProperties);
 	
 	for(objc_property_t* property = properties;
 		property < properties+numberOfProperties;
@@ -766,19 +766,19 @@ Class RMModelObjectInitializeDynamicClass(Class self)
 		const char* const setterName = buffer;
 		
 		Method getter = NULL;
-		if(class_getInstanceMethod(self, sel_registerName(getterName)) == NULL)
+		if(class_getInstanceMethod(localSelf, sel_registerName(getterName)) == NULL)
 		{
-			if(propertyAttributes.assignmentMode == ObjCPropertyAssignmentModeAssign) getter = [self _assignmentAccessorForTypeEncoding:propertyTypeEncoding wantsSetterMethod:NO];
-			else if(propertyAttributes.assignmentMode == ObjCPropertyAssignmentModeRetain) getter = class_getInstanceMethod(self, @selector(_modelObjectGetIdRetain));
-			else if(propertyAttributes.assignmentMode == ObjCPropertyAssignmentModeCopy) getter = class_getInstanceMethod(self, @selector(_modelObjectGetIdCopy));
+			if(propertyAttributes.assignmentMode == ObjCPropertyAssignmentModeAssign) getter = [localSelf _assignmentAccessorForTypeEncoding:propertyTypeEncoding wantsSetterMethod:NO];
+			else if(propertyAttributes.assignmentMode == ObjCPropertyAssignmentModeRetain) getter = class_getInstanceMethod(localSelf, @selector(_modelObjectGetIdRetain));
+			else if(propertyAttributes.assignmentMode == ObjCPropertyAssignmentModeCopy) getter = class_getInstanceMethod(localSelf, @selector(_modelObjectGetIdCopy));
 			
 			RMClassAddMethod(dynamicClass, sel_registerName(getterName), method_getImplementation(getter), method_getTypeEncoding(getter));
 		}
 			
 		Method setter = NULL;
-		if(propertyAttributes.assignmentMode == ObjCPropertyAssignmentModeAssign) setter = [self _assignmentAccessorForTypeEncoding:propertyTypeEncoding wantsSetterMethod:YES];
-		else if(propertyAttributes.assignmentMode == ObjCPropertyAssignmentModeRetain) setter = GetSetterMethod(self, @selector(_modelObjectSetIdRetain:));
-		else if(propertyAttributes.assignmentMode == ObjCPropertyAssignmentModeCopy) setter = GetSetterMethod(self, @selector(_modelObjectSetIdCopy:));
+		if(propertyAttributes.assignmentMode == ObjCPropertyAssignmentModeAssign) setter = [localSelf _assignmentAccessorForTypeEncoding:propertyTypeEncoding wantsSetterMethod:YES];
+		else if(propertyAttributes.assignmentMode == ObjCPropertyAssignmentModeRetain) setter = GetSetterMethod(localSelf, @selector(_modelObjectSetIdRetain:));
+		else if(propertyAttributes.assignmentMode == ObjCPropertyAssignmentModeCopy) setter = GetSetterMethod(localSelf, @selector(_modelObjectSetIdCopy:));
 		
 		RMClassAddMethod(dynamicClass, sel_registerName(setterName), method_getImplementation(setter), method_getTypeEncoding(setter));
 		
