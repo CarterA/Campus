@@ -7,27 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A0EC08B131883FD00B22E92 /* CampusLogin.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0EC08A131883FD00B22E92 /* CampusLogin.xib */; };
+		4A0EC0BA13189B0C00B22E92 /* CZURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0EC0B913189B0C00B22E92 /* CZURLConnection.m */; };
 		4A199C8B12E644F90093D0F1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A199C8A12E644F90093D0F1 /* Cocoa.framework */; };
 		4A199C9512E644F90093D0F1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4A199C9312E644F90093D0F1 /* InfoPlist.strings */; };
 		4A199C9812E644F90093D0F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A199C9712E644F90093D0F1 /* main.m */; };
 		4A199C9B12E644F90093D0F1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4A199C9912E644F90093D0F1 /* Credits.rtf */; };
 		4A199C9E12E644F90093D0F1 /* CampusAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A199C9D12E644F90093D0F1 /* CampusAppDelegate.m */; };
 		4A199CAB12E64C900093D0F1 /* CampusLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A199CAA12E64C900093D0F1 /* CampusLogin.m */; };
-		4A199CB912E6B0370093D0F1 /* CZURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A199CB812E6B0370093D0F1 /* CZURLConnection.m */; };
+		4A3C66C012FB94DB00986022 /* CampusLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3C66BF12FB94DB00986022 /* CampusLoginController.m */; };
+		4A3C67D912FBA3FB00986022 /* CZLinkedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3C67D812FBA3FB00986022 /* CZLinkedView.m */; };
 		4A8E297A12EDF0300063D95A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8E297912EDF0300063D95A /* QuartzCore.framework */; };
 		4A90E20E12E7DFDF00F3E619 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A90E20D12E7DFDF00F3E619 /* libxml2.dylib */; };
 		4A90E21212E7E01900F3E619 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A90E21112E7E01900F3E619 /* XPathQuery.m */; };
 		4AA9B03812E814E500CCB828 /* ICCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA9B03712E814E500CCB828 /* ICCourse.m */; };
 		4AA9B04212E815E200CCB828 /* ICTerm.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA9B04112E815E200CCB828 /* ICTerm.m */; };
 		4AA9B0F112E9776D00CCB828 /* RMModelObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4AA9B0F012E9776D00CCB828 /* RMModelObject.mm */; };
-		4AA9B11012EA4AC600CCB828 /* CZProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA9B10F12EA4AC600CCB828 /* CZProgressIndicator.m */; };
 		4AA9B16C12EA5ABD00CCB828 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AA9B16B12EA5ABD00CCB828 /* MainMenu.xib */; };
 		4AA9B28712EAB02000CCB828 /* EMKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA9B28612EAB02000CCB828 /* EMKeychainItem.m */; };
 		4AA9B29812EAB0AC00CCB828 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA9B29712EAB0AC00CCB828 /* Carbon.framework */; };
 		4AA9B29A12EAB0AC00CCB828 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA9B29912EAB0AC00CCB828 /* Security.framework */; };
 		4AA9B2E212EAB30A00CCB828 /* Username.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4AA9B2E112EAB30A00CCB828 /* Username.txt */; };
 		4AA9B39612EB770000CCB828 /* Pinstripes.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AA9B39512EB770000CCB828 /* Pinstripes.png */; };
-		4AC5D56812E772560012CA4B /* IKConnectionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC5D56712E772560012CA4B /* IKConnectionDelegate.m */; };
 		4AF3839E12F60FD500EE4175 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF3839D12F60FD500EE4175 /* BWToolkitFramework.framework */; };
 		4AF383DB12F6136700EE4175 /* BWToolkitFramework.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF3839D12F60FD500EE4175 /* BWToolkitFramework.framework */; };
 		5E34D94612F6783F00624E66 /* ICAssignment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E34D94512F6783F00624E66 /* ICAssignment.m */; };
@@ -50,6 +51,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4A0EC08A131883FD00B22E92 /* CampusLogin.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CampusLogin.xib; sourceTree = "<group>"; };
+		4A0EC0B813189B0C00B22E92 /* CZURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CZURLConnection.h; sourceTree = "<group>"; };
+		4A0EC0B913189B0C00B22E92 /* CZURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CZURLConnection.m; sourceTree = "<group>"; };
 		4A199C8612E644F90093D0F1 /* Campus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Campus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A199C8A12E644F90093D0F1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		4A199C8D12E644F90093D0F1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -64,8 +68,10 @@
 		4A199C9D12E644F90093D0F1 /* CampusAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CampusAppDelegate.m; sourceTree = "<group>"; };
 		4A199CA712E64C6F0093D0F1 /* CampusLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CampusLogin.h; sourceTree = "<group>"; };
 		4A199CAA12E64C900093D0F1 /* CampusLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampusLogin.m; sourceTree = "<group>"; };
-		4A199CB512E6B01F0093D0F1 /* CZURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CZURLConnection.h; sourceTree = "<group>"; };
-		4A199CB812E6B0370093D0F1 /* CZURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CZURLConnection.m; sourceTree = "<group>"; };
+		4A3C66BE12FB94DB00986022 /* CampusLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CampusLoginController.h; sourceTree = "<group>"; };
+		4A3C66BF12FB94DB00986022 /* CampusLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampusLoginController.m; sourceTree = "<group>"; };
+		4A3C67D712FBA3FB00986022 /* CZLinkedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CZLinkedView.h; sourceTree = "<group>"; };
+		4A3C67D812FBA3FB00986022 /* CZLinkedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CZLinkedView.m; sourceTree = "<group>"; };
 		4A8E297912EDF0300063D95A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4A90E20D12E7DFDF00F3E619 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = ../../../../../../../usr/lib/libxml2.dylib; sourceTree = "<group>"; };
 		4A90E21012E7E01900F3E619 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
@@ -76,8 +82,6 @@
 		4AA9B04112E815E200CCB828 /* ICTerm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICTerm.m; sourceTree = "<group>"; };
 		4AA9B0EF12E9776D00CCB828 /* RMModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMModelObject.h; sourceTree = "<group>"; };
 		4AA9B0F012E9776D00CCB828 /* RMModelObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RMModelObject.mm; sourceTree = "<group>"; };
-		4AA9B10E12EA4AC600CCB828 /* CZProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CZProgressIndicator.h; sourceTree = "<group>"; };
-		4AA9B10F12EA4AC600CCB828 /* CZProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CZProgressIndicator.m; sourceTree = "<group>"; };
 		4AA9B16B12EA5ABD00CCB828 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		4AA9B28512EAB02000CCB828 /* EMKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKeychainItem.h; sourceTree = "<group>"; };
 		4AA9B28612EAB02000CCB828 /* EMKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKeychainItem.m; sourceTree = "<group>"; };
@@ -85,8 +89,6 @@
 		4AA9B29912EAB0AC00CCB828 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		4AA9B2E112EAB30A00CCB828 /* Username.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Username.txt; sourceTree = "<group>"; };
 		4AA9B39512EB770000CCB828 /* Pinstripes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pinstripes.png; sourceTree = "<group>"; };
-		4AC5D56612E772560012CA4B /* IKConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKConnectionDelegate.h; sourceTree = "<group>"; };
-		4AC5D56712E772560012CA4B /* IKConnectionDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKConnectionDelegate.m; sourceTree = "<group>"; };
 		4AF3839D12F60FD500EE4175 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = Campus/BWToolkitFramework.framework; sourceTree = "<group>"; };
 		5E34D94412F6783F00624E66 /* ICAssignment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICAssignment.h; sourceTree = "<group>"; };
 		5E34D94512F6783F00624E66 /* ICAssignment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICAssignment.m; sourceTree = "<group>"; };
@@ -160,6 +162,9 @@
 				4A199C9D12E644F90093D0F1 /* CampusAppDelegate.m */,
 				4A199CA712E64C6F0093D0F1 /* CampusLogin.h */,
 				4A199CAA12E64C900093D0F1 /* CampusLogin.m */,
+				4A0EC08A131883FD00B22E92 /* CampusLogin.xib */,
+				4A3C66BE12FB94DB00986022 /* CampusLoginController.h */,
+				4A3C66BF12FB94DB00986022 /* CampusLoginController.m */,
 				5EBDA19F12EB884A00833AC3 /* ICConnection.h */,
 				5EBDA1A012EB884A00833AC3 /* ICConnection.m */,
 				5EBDA1A412EB8EDD00833AC3 /* ICResponse.h */,
@@ -170,8 +175,6 @@
 				4AA9B03712E814E500CCB828 /* ICCourse.m */,
 				5E34D94412F6783F00624E66 /* ICAssignment.h */,
 				5E34D94512F6783F00624E66 /* ICAssignment.m */,
-				4A199CB512E6B01F0093D0F1 /* CZURLConnection.h */,
-				4A199CB812E6B0370093D0F1 /* CZURLConnection.m */,
 				4AA9B16B12EA5ABD00CCB828 /* MainMenu.xib */,
 				4A199C9112E644F90093D0F1 /* Supporting Files */,
 			);
@@ -184,10 +187,10 @@
 				4AA9B39512EB770000CCB828 /* Pinstripes.png */,
 				4A90E20D12E7DFDF00F3E619 /* libxml2.dylib */,
 				4A90E20F12E7E01900F3E619 /* XPathQuery */,
-				4AA9B10E12EA4AC600CCB828 /* CZProgressIndicator.h */,
-				4AA9B10F12EA4AC600CCB828 /* CZProgressIndicator.m */,
-				4AC5D56612E772560012CA4B /* IKConnectionDelegate.h */,
-				4AC5D56712E772560012CA4B /* IKConnectionDelegate.m */,
+				4A3C67D712FBA3FB00986022 /* CZLinkedView.h */,
+				4A3C67D812FBA3FB00986022 /* CZLinkedView.m */,
+				4A0EC0B813189B0C00B22E92 /* CZURLConnection.h */,
+				4A0EC0B913189B0C00B22E92 /* CZURLConnection.m */,
 				4AA9B28512EAB02000CCB828 /* EMKeychainItem.h */,
 				4AA9B28612EAB02000CCB828 /* EMKeychainItem.m */,
 				4AA9B0EF12E9776D00CCB828 /* RMModelObject.h */,
@@ -267,6 +270,7 @@
 				4AA9B16C12EA5ABD00CCB828 /* MainMenu.xib in Resources */,
 				4AA9B2E212EAB30A00CCB828 /* Username.txt in Resources */,
 				4AA9B39612EB770000CCB828 /* Pinstripes.png in Resources */,
+				4A0EC08B131883FD00B22E92 /* CampusLogin.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,17 +284,17 @@
 				4A199C9812E644F90093D0F1 /* main.m in Sources */,
 				4A199C9E12E644F90093D0F1 /* CampusAppDelegate.m in Sources */,
 				4A199CAB12E64C900093D0F1 /* CampusLogin.m in Sources */,
-				4A199CB912E6B0370093D0F1 /* CZURLConnection.m in Sources */,
-				4AC5D56812E772560012CA4B /* IKConnectionDelegate.m in Sources */,
 				4A90E21212E7E01900F3E619 /* XPathQuery.m in Sources */,
 				4AA9B03812E814E500CCB828 /* ICCourse.m in Sources */,
 				4AA9B04212E815E200CCB828 /* ICTerm.m in Sources */,
 				4AA9B0F112E9776D00CCB828 /* RMModelObject.mm in Sources */,
-				4AA9B11012EA4AC600CCB828 /* CZProgressIndicator.m in Sources */,
 				4AA9B28712EAB02000CCB828 /* EMKeychainItem.m in Sources */,
 				5EBDA1A112EB884A00833AC3 /* ICConnection.m in Sources */,
 				5EBDA1A612EB8EDD00833AC3 /* ICResponse.m in Sources */,
 				5E34D94612F6783F00624E66 /* ICAssignment.m in Sources */,
+				4A3C66C012FB94DB00986022 /* CampusLoginController.m in Sources */,
+				4A3C67D912FBA3FB00986022 /* CZLinkedView.m in Sources */,
+				4A0EC0BA13189B0C00B22E92 /* CZURLConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,6 +13,7 @@
 @interface CampusAppDelegate : NSObject <NSApplicationDelegate> {}
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet NSView *mainView;
+@property (assign) IBOutlet NSView *accessoryView;
 @property (assign) IBOutlet NSCollectionView *termListView;
 @property (assign) IBOutlet NSProgressIndicator *progressIndicator;
 @property (nonatomic, retain) NSMutableArray *terms;
