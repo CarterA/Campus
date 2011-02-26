@@ -10,7 +10,7 @@
 #import "ICTerm.h"
 #import "ICCourse.h"
 #import "CampusLogin.h"
-#import "IKConnectionDelegate.h"
+#import "CZURLConnection.h"
 #import "XPathQuery/XPathQuery.h"
 
 @implementation ICConnection
@@ -35,7 +35,8 @@
 		
 		// Load up the portal.
 		NSURLRequest *portalRequest = [NSURLRequest requestWithURL:portalURL];
-		IKConnectionDelegate *portalRequestDelegate = [IKConnectionDelegate connectionDelegateWithDownloadProgress:nil uploadProgress:nil completion:^(NSData *portalResponseData, NSURLResponse *response, NSError *error) {
+		CZURLConnection *portalConnection = [CZURLConnection connectionWithRequest:portalRequest];
+		[portalConnection setCompletionHandler:^(NSData *portalResponseData, NSURLResponse *response) {
 			
 			// Search for the portal schedule link in this mess...
 			//NSString *query = @"/html/body/table/tr[3]/td[1]/table[5]/tr/td[4]/a";
@@ -46,7 +47,8 @@
 			
 			// Load the schedule page.
 			NSURLRequest *scheduleRequest = [NSURLRequest requestWithURL:scheduleURL];
-			IKConnectionDelegate *scheduleRequestDelegate = [IKConnectionDelegate connectionDelegateWithDownloadProgress:nil uploadProgress:nil completion:^(NSData *scheduleResponseData, NSURLResponse *response, NSError *error) {
+			CZURLConnection *scheduleConnection = [CZURLConnection connectionWithRequest:scheduleRequest];
+			[scheduleConnection setCompletionHandler:^(NSData *scheduleResponseData, NSURLResponse *response) {
 				
 				// Create each term.
 				NSMutableArray *terms = [NSMutableArray array];
@@ -118,12 +120,13 @@
 											course.instructor = instructor;
 											course.url = courseURL;
 											
-											if ([courseName isEqualToString:@"DSA Chorale Intermediate 2 S1"]) { // For testing only. My brain can only handle one assload of assignment data at once.
+											//if ([courseName isEqualToString:@"DSA Chorale Intermediate 2 S1"]) { // For testing only. My brain can only handle one assload of assignment data at once.
 												// Scrape and add assignment data to the course, if it contains a gradebook.
 												if (course.url) {
 													// Load up the gradebook.
 													NSURLRequest *gradebookRequest = [NSURLRequest requestWithURL:course.url];
-													IKConnectionDelegate *gradebookRequestDelegate = [IKConnectionDelegate connectionDelegateWithDownloadProgress:nil uploadProgress:nil completion:^(NSData *gradebookResponseData, NSURLResponse *response, NSError *error) {
+													CZURLConnection *gradebookConnection = [CZURLConnection connectionWithRequest:gradebookRequest];
+													[gradebookConnection setCompletionHandler:^(NSData *gradebookResponseData, NSURLResponse *response) {
 														
 														NSString *tableQuery = @"/html/body/table/tr[3]/td[2]/table/tr[3]/td/table";
 														NSArray *tableQueryResults = PerformHTMLXPathQuery(gradebookResponseData, tableQuery);
@@ -206,13 +209,13 @@
 																}
 															}
 														}
-														NSLog(@"%@", [assignmentCategoriesWithRawAssignmentData allKeys]); // Here's yer dang category names!
+														//NSLog(@"%@", [assignmentCategoriesWithRawAssignmentData allKeys]); // Here's yer dang category names!
 														
 														// Add the completed course to the term in which we are currently working.
 														[[terms objectAtIndex:columnIndex-1] addCourse:course];
 														
 													}];
-													[NSURLConnection connectionWithRequest:gradebookRequest delegate:gradebookRequestDelegate];
+													[gradebookConnection start];
 												}
 												else { // If the course doesn't have a gradebook, just add it to the term without parsing assignments.
 													[[terms objectAtIndex:columnIndex-1] addCourse:course];
@@ -222,7 +225,7 @@
 											// Add the course we just finished parsing to the list of completed courses so we don't parse it again.
 											[parsedCourses addObject:courseIdentifier];
 											
-										}
+										//}
 										
 									}
 								}
@@ -240,10 +243,10 @@
 				[campusResponse release];
 				
 			}];
-			[NSURLConnection connectionWithRequest:scheduleRequest delegate:scheduleRequestDelegate];
+			[scheduleConnection start];
 			
 		}];
-		[NSURLConnection connectionWithRequest:portalRequest delegate:portalRequestDelegate];
+		[portalConnection start];
 		
 	}];
 }
