@@ -29,6 +29,10 @@
 		4AA9B29A12EAB0AC00CCB828 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA9B29912EAB0AC00CCB828 /* Security.framework */; };
 		4AA9B2E212EAB30A00CCB828 /* Username.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4AA9B2E112EAB30A00CCB828 /* Username.txt */; };
 		4AA9B39612EB770000CCB828 /* Pinstripes.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AA9B39512EB770000CCB828 /* Pinstripes.png */; };
+		4ACA40F41318B710005A929B /* CampusTermsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACA40F21318B710005A929B /* CampusTermsController.m */; };
+		4ACA40F51318B710005A929B /* CampusTermsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ACA40F31318B710005A929B /* CampusTermsView.xib */; };
+		4ACA40F81318BAAF005A929B /* CampusTermCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACA40F71318BAAF005A929B /* CampusTermCellView.m */; };
+		4ACA40FA1318BBA3005A929B /* CampusTermCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ACA40F91318BBA3005A929B /* CampusTermCellView.xib */; };
 		4AF3839E12F60FD500EE4175 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF3839D12F60FD500EE4175 /* BWToolkitFramework.framework */; };
 		4AF383DB12F6136700EE4175 /* BWToolkitFramework.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF3839D12F60FD500EE4175 /* BWToolkitFramework.framework */; };
 		5E34D94612F6783F00624E66 /* ICAssignment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E34D94512F6783F00624E66 /* ICAssignment.m */; };
@@ -89,6 +93,12 @@
 		4AA9B29912EAB0AC00CCB828 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		4AA9B2E112EAB30A00CCB828 /* Username.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Username.txt; sourceTree = "<group>"; };
 		4AA9B39512EB770000CCB828 /* Pinstripes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pinstripes.png; sourceTree = "<group>"; };
+		4ACA40F11318B710005A929B /* CampusTermsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CampusTermsController.h; sourceTree = "<group>"; };
+		4ACA40F21318B710005A929B /* CampusTermsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampusTermsController.m; sourceTree = "<group>"; };
+		4ACA40F31318B710005A929B /* CampusTermsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CampusTermsView.xib; sourceTree = "<group>"; };
+		4ACA40F61318BAAF005A929B /* CampusTermCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CampusTermCellView.h; sourceTree = "<group>"; };
+		4ACA40F71318BAAF005A929B /* CampusTermCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampusTermCellView.m; sourceTree = "<group>"; };
+		4ACA40F91318BBA3005A929B /* CampusTermCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CampusTermCellView.xib; sourceTree = "<group>"; };
 		4AF3839D12F60FD500EE4175 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = Campus/BWToolkitFramework.framework; sourceTree = "<group>"; };
 		5E34D94412F6783F00624E66 /* ICAssignment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICAssignment.h; sourceTree = "<group>"; };
 		5E34D94512F6783F00624E66 /* ICAssignment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICAssignment.m; sourceTree = "<group>"; };
@@ -165,6 +175,12 @@
 				4A0EC08A131883FD00B22E92 /* CampusLogin.xib */,
 				4A3C66BE12FB94DB00986022 /* CampusLoginController.h */,
 				4A3C66BF12FB94DB00986022 /* CampusLoginController.m */,
+				4ACA40F11318B710005A929B /* CampusTermsController.h */,
+				4ACA40F21318B710005A929B /* CampusTermsController.m */,
+				4ACA40F31318B710005A929B /* CampusTermsView.xib */,
+				4ACA40F61318BAAF005A929B /* CampusTermCellView.h */,
+				4ACA40F71318BAAF005A929B /* CampusTermCellView.m */,
+				4ACA40F91318BBA3005A929B /* CampusTermCellView.xib */,
 				5EBDA19F12EB884A00833AC3 /* ICConnection.h */,
 				5EBDA1A012EB884A00833AC3 /* ICConnection.m */,
 				5EBDA1A412EB8EDD00833AC3 /* ICResponse.h */,
@@ -271,6 +287,8 @@
 				4AA9B2E212EAB30A00CCB828 /* Username.txt in Resources */,
 				4AA9B39612EB770000CCB828 /* Pinstripes.png in Resources */,
 				4A0EC08B131883FD00B22E92 /* CampusLogin.xib in Resources */,
+				4ACA40F51318B710005A929B /* CampusTermsView.xib in Resources */,
+				4ACA40FA1318BBA3005A929B /* CampusTermCellView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +313,8 @@
 				4A3C66C012FB94DB00986022 /* CampusLoginController.m in Sources */,
 				4A3C67D912FBA3FB00986022 /* CZLinkedView.m in Sources */,
 				4A0EC0BA13189B0C00B22E92 /* CZURLConnection.m in Sources */,
+				4ACA40F41318B710005A929B /* CampusTermsController.m in Sources */,
+				4ACA40F81318BAAF005A929B /* CampusTermCellView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

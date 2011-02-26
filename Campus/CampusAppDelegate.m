@@ -8,29 +8,35 @@
 
 #import "CampusAppDelegate.h"
 #import "CampusLoginController.h"
+#import "CampusTermsController.h"
 #import "ICConnection.h"
-#import "ICTerm.h"
-#import "ICCourse.h"
 #import "EMKeychainItem.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface CampusAppDelegate ()
 @property (nonatomic, retain) CampusLoginController *loginController;
+@property (nonatomic, retain) CampusTermsController *termsController;
 @end
 
 @implementation CampusAppDelegate
 
-@synthesize window, mainView, accessoryView, termListView;
+@synthesize window, mainView, accessoryView, termListPlaceholderView;
 @synthesize progressIndicator;
-@synthesize terms;
 @synthesize loginController=_loginController;
+@synthesize termsController=_termsController;
 
 - (void)dealloc {
 	[_loginController release];
+	[_termsController release];
 	[super dealloc];
 }
 
 - (void)awakeFromNib {
+	
+	// Create the terms view controller
+	self.termsController = [[CampusTermsController alloc] initWithNibName:@"CampusTermsView" bundle:[NSBundle mainBundle]];
+	self.termsController.view.frame = self.termListPlaceholderView.bounds;
+	[self.termListPlaceholderView addSubview:self.termsController.view];
 	
 	// Add the accessory view to the window
 	/*NSView *themeFrame = [[self.window contentView] superview];
@@ -44,8 +50,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	
-	self.loginController = [[CampusLoginController alloc] initWithWindowNibName:@"CampusLogin"];
-	[NSApp beginSheet:self.loginController.window modalForWindow:self.window modalDelegate:self didEndSelector:nil contextInfo:nil];
+	//self.loginController = [[CampusLoginController alloc] initWithWindowNibName:@"CampusLogin"];
+	//[NSApp beginSheet:self.loginController.window modalForWindow:self.window modalDelegate:self didEndSelector:nil contextInfo:nil];
 	
 	// Obtain login information.
 	NSString *username = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Username" withExtension:@"txt"] encoding:NSASCIIStringEncoding error:nil];
@@ -55,13 +61,13 @@
 	ICConnection *campusConnection = [[ICConnection alloc] init];
 	[self.progressIndicator setUsesThreadedAnimation:YES];
 	[self.progressIndicator startAnimation:self];
-	[self.termListView setMinItemSize:NSMakeSize(20, 60)];
 	[campusConnection scrapeDataWithUsername:item.username password:item.password completionHandler:^(ICResponse *response) {
 		
 		[self.progressIndicator stopAnimation:self];
 		[self.progressIndicator removeFromSuperview];
 		
-		self.terms = response.terms;
+		self.termsController.terms = response.terms;
+		[self.termsController.tableView reloadData];
 		
 	}];
 	[campusConnection release];
